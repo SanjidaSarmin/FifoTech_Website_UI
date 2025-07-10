@@ -1,0 +1,27 @@
+<div class="contact-table-wrapper">
+    <h2 class="page-title">Message-List</h2>
+  
+    <table class="contact-table">
+      <thead>
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Message</th>
+          <th>Send Time</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let message of messagelist">
+          <td>{{message.firstName}}</td>
+          <td>{{message.lastName}}</td>
+          <td>{{message.email}}</td>
+          <td>{{message.phone}}</td>
+          <td>{{message.content}}</td>
+          <td>{{message.submittedAt}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

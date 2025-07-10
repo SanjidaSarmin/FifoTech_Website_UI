@@ -1,0 +1,51 @@
+<div class="container" *ngIf="!loading && newsItem">
+    <!-- Back Button -->
+    <button class="back-button" (click)="goBack()">
+      <i class="fas fa-arrow-left"></i> Back to News
+    </button>
+  
+    <div class="news-details-card">
+      <!-- Featured Media -->
+      <div class="featured-media" *ngIf="newsItem.imageBase64">
+        <img [src]="newsItem.imageBase64" [alt]="newsItem.title" class="featured-image">
+      </div>
+  
+      <!-- Article Header -->
+      <div class="article-header">
+        <h1 class="article-title">{{ newsItem.title }}</h1>
+        <p class="publish-date">
+          <i class="far fa-calendar-alt"></i>
+          Published on {{ newsItem.publishTime | date:'longDate' }}
+        </p>
+      </div>
+  
+      <!-- Main Content -->
+      <div class="content">
+        <div class="article-description" [innerHTML]="formatDescription(newsItem.description)"></div>
+      </div>
+
+      <div class="news-link" *ngIf="newsItem.newsLink">
+        <i class="fas fa-link"></i>
+        <a [href]="newsItem.newsLink" target="_blank" rel="noopener noreferrer">
+          News Link
+        </a>
+      </div>
+
+    </div>
+  </div>
+  
+  <!-- Loading State -->
+  <div class="loading-spinner" *ngIf="loading">
+    <i class="fas fa-spinner fa-spin"></i>
+    <span>Loading...</span>
+  </div>
+  
+  <!-- Not Found State -->
+  <div class="not-found" *ngIf="!loading && !newsItem">
+    <h2>Article not found</h2>
+    <p>The requested article could not be found.</p>
+    <button class="back-button" (click)="goBack()">
+      <i class="fas fa-arrow-left"></i> Back to News
+    </button>
+  </div>
+  

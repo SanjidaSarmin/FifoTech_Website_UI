@@ -1,0 +1,76 @@
+<section class="contact-header">
+  <div class="header-content">
+    <h1 class="page-title">Contact Us</h1>
+    <p class="page-subtitle">We'd love to hear from you. Get in touch with our team.</p>
+    <div class="header-divider"></div>
+  </div>
+</section>
+
+<div class="contact-wrapper">
+  <div class="contact-left">
+    <div class="contact-overlay">
+      <div class="contact-info">
+
+        <div class="contact-item">
+          <img src="assets/location-icon.png" alt="Location Icon" class="icon" />
+          <span>Address</span>
+          <div *ngFor="let addr of contact?.addresses" class="address-with-icon">
+            <p class="address">{{ addr }}</p>
+          </div>
+        </div>                
+      
+        <div class="contact-item">
+          <img src="assets/Phone_icon.png" alt="Phone Icon" class="icon">
+          <span>Phone</span>
+          <p *ngFor="let phone of contact?.phoneNumbers">
+            <span class="tel">Tel: </span> {{ phone }}
+          </p>
+        </div>
+
+        <div class="contact-item">
+          <img src="assets/apple-mail.png" alt="Email Icon" class="icon">
+          <span>Email Address</span>
+          <div *ngFor="let email of contact?.emails">
+            <a [href]="'mailto:' + email">{{ email }}</a>
+          </div>
+        </div>
+      
+      </div>
+      
+
+    </div>
+  </div>
+  <div class="contact-right">
+    <h2>Send Us A Message</h2>
+    <form (ngSubmit)="submitMessage()" #formRef="ngForm">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Tell us your name *</label>
+          <input type="text" placeholder="First name" required [(ngModel)]="messageForm.firstName" name="firstName">
+        </div>
+        <div class="form-group">
+          <label>&nbsp;</label>
+          <input type="text" placeholder="Last name" [(ngModel)]="messageForm.lastName" name="lastName">
+        </div>
+      </div>
+    
+      <div class="form-group">
+        <label>Enter your email *</label>
+        <input type="email" placeholder="Eg. example@email.com" required [(ngModel)]="messageForm.email" name="email">
+      </div>
+    
+      <div class="form-group">
+        <label>Enter phone number</label>
+        <input type="tel" placeholder="Eg. +1 800 000000" [(ngModel)]="messageForm.phone" name="phone">
+      </div>
+    
+      <div class="form-group">
+        <label>Message *</label>
+        <textarea placeholder="Write us a message" required [(ngModel)]="messageForm.content" name="message"></textarea>
+      </div>
+    
+      <button type="submit">Send Message</button>
+    </form>
+    
+  </div>
+</div>

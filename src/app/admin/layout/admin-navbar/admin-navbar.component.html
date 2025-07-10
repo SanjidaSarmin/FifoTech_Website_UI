@@ -1,0 +1,48 @@
+<header class="admin-header">
+  <div class="admin-navbar">
+    <div class="navbar-container">
+      <!-- Logo and Brand -->
+      <div class="logo">
+        <a routerLink="/admin/dashboard">
+          <img src="assets/fifotech-logo.png" alt="FIFO Tech Admin" class="logo-img">
+          <span class="brand-text">Admin Panel</span>
+        </a>
+      </div>
+
+      <!-- Navigation Links -->
+      <nav class="nav-links">
+        <a routerLink="/admin/dashboard" routerLinkActive="active">
+          Dashboard
+        </a>
+        <a routerLink="/" routerLinkActive="active">
+          Home
+        </a>
+      </nav>
+
+      <!-- User Menu -->
+      <div class="user-menu">
+
+        <!-- Profile Dropdown -->
+        <div class="profile-dropdown" #dropdownRef>
+          <button class="profile-btn" (click)="toggleProfileDropdown()">
+            <div class="avatar">
+              <i class="fas fa-user"></i>
+            </div>
+            <span class="username">Admin</span>
+            <i class="fas fa-chevron-down"></i>
+          </button>
+
+          <div class="dropdown-menu" [class.show]="isProfileDropdownOpen">
+            <span class="dropdown-item">Welcome Admin!</span>
+            <div class="dropdown-divider"></div>
+            <button type="button" class="dropdown-item text-danger" (click)="logout()">
+              <i class="fas fa-sign-out-alt"></i>
+              <span>Logout</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</header>

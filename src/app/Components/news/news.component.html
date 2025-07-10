@@ -1,0 +1,61 @@
+<!-- Page Header -->
+<header class="page-header">
+  <div class="container h-100">
+    <div class="row h-100 align-items-center">
+      <div class="col-lg-8 mx-auto text-center">
+        <h1>News & Events</h1>
+        <p class="subtitle">Stay informed with the latest happenings and announcements</p>
+        <div class="header-divider"></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+  <!-- Main Content -->
+  <main class="news-main">
+    <div class="container">
+      <div class="grid-container">
+        <!-- News Items -->
+        <div class="grid-item" *ngFor="let item of newsItems
+        ; let i = index" [class]="'item-' + (i + 1)">
+      <div class="item-image">
+        <img [src]="item.imageBase64" [alt]="item.title" class="grid-image">
+        <div class="overlay"></div>
+        
+      </div>
+      <div class="item-content">
+        <h3 class="item-title">{{ item.title }}</h3>
+        <p class="publish-date">
+          <i class="far fa-calendar-alt"></i>
+          {{ item.publishTime | date:'longDate' }}
+        </p>
+        <p class="item-description">
+          {{ item.description | slice:0:100 }}{{ item.description.length > 100 ? '...' : '' }}
+        </p>
+      </div>
+          <div class="hover-content">
+            <p>{{ item.hoverText }}</p>
+            <a [routerLink]="['/news', item.id]" class="learn-more" (click)="$event.stopPropagation()">Read More <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="pagination-container" *ngIf="totalPages > 1">
+        <div class="pagination-controls">
+          <button (click)="prevPage()" [disabled]="currentPage === 0" [class.disabled]="currentPage === 0"
+            class="pagination-button prev" aria-label="Previous page">
+            <i class="fas fa-chevron-left"></i> Previous
+          </button>
+
+          <div class="page-info">
+            <span>Page {{ currentPage + 1 }} of {{ totalPages }}</span>
+          </div>
+
+          <button (click)="nextPage()" [disabled]="currentPage + 1 >= totalPages"
+            [class.disabled]="currentPage + 1 >= totalPages" class="pagination-button next" aria-label="Next page">
+            Next <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>

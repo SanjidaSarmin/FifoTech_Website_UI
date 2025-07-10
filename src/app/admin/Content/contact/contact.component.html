@@ -1,0 +1,65 @@
+<div class="contact-table-wrapper">
+  <h2 class="page-title">Contact-List</h2>
+
+  <!-- Edit News Modal -->
+  <div class="modal" [class.show]="isEditModalOpen">
+    <div class="modal-overlay" (click)="closeEditModal()"></div>
+    <div class="modal-content">
+      <button class="close-button" (click)="closeEditModal()">×</button>
+      <h3 class="modal-title">Edit Contact</h3>
+
+      <form (ngSubmit)="submitEdit()" #editForm="ngForm">
+        <label>Addresses (one per line)</label>
+        <textarea [(ngModel)]="editableContact.addressesString" name="addresses" rows="3"></textarea>
+
+
+        <label>Emails (comma separated)</label>
+        <input [(ngModel)]="editableContact.emailsString" name="emails" />
+
+        <label>Phones (comma separated)</label>
+        <input [(ngModel)]="editableContact.phoneString" name="phones" />
+
+        <div class="modal-buttons">
+          <button type="submit" [disabled]="!editForm.valid">Save</button>
+          <button type="button" (click)="closeEditModal()">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <table class="contact-table" *ngIf="contact">
+    <thead>
+      <tr>
+        <th>Address</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <div *ngFor="let addr of contact.addresses">
+            {{ addr }}
+          </div>
+        </td>
+        
+        <td>
+          <div *ngFor="let email of contact.emails">
+            <a [href]="'mailto:' + email">{{ email }}</a>
+          </div>
+        </td>
+        <td>
+          <div *ngFor="let phone of contact.phoneNumbers">
+            {{ phone }}
+          </div>
+        </td>
+        <td>
+          <button class="edit-button" (click)="openEditModal()" title="Edit">
+            <i class="fas fa-edit"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

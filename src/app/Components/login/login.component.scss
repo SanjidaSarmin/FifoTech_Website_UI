@@ -1,0 +1,311 @@
+// Variables
+$primary-color: #104fd6;
+$primary-hover: #0252ad;
+$text-color: #1f2937;
+$light-gray: #f3f4f6;
+$border-color: #e5e7eb;
+$error-color: #dc2626;
+$transition: all 0.3s ease;
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  padding: 2rem;
+  background-color: $light-gray;
+}
+
+.login-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  max-width: 420px;
+  padding: 2.5rem;
+  transition: box-shadow 0.3s ease;
+
+  &:hover {
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.login-header {
+  text-align: center;
+  margin-bottom: 2rem;
+
+  h2 {
+    color: $text-color;
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    color: #4d535e;
+    font-size:  1.1rem;
+  }
+}
+
+.login-form {
+  .form-group {
+    margin-bottom: 1.5rem;
+    position: relative;
+    .error-message {
+      color: $error-color;
+      font-size: 0.8rem;
+      margin-top: 0.5rem;
+      display: block;
+      min-height: 1.2rem;
+    }
+  }
+
+  .input-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    
+    input {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 1px solid $border-color;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      transition: $transition;
+      background-color: #f9fafb;
+      padding-right: 40px;
+
+      &:focus {
+        outline: none;
+        border-color: $primary-color;
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        background-color: white;
+      }
+
+      &::placeholder {
+        color: #9ca3af;
+      }
+
+      &.is-invalid {
+        border-color: $error-color;
+        background-color: #fef2f2;
+      }
+    }
+  }
+
+  .password-input-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    input {
+      padding-right: 40px;
+    }
+
+    .toggle-password {
+      position: absolute;
+      right: 10px;
+      background: none;
+      border: none;
+      color: #6b7280;
+      cursor: pointer;
+      padding: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: color 0.2s ease;
+      border-radius: 4px;
+
+      &:hover {
+        color: $primary-color;
+        background-color: rgba(0, 0, 0, 0.05);
+      }
+
+      &:focus {
+        outline: none;
+        box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+      }
+
+      .material-icons {
+        font-size: 20px;
+      }
+    }
+  }
+
+  .input-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+
+    label {
+      display: block;
+      font-weight: 500;
+      color: $text-color;
+      font-size: 1.1rem;
+    }
+
+    .forgot-password {
+      color: $primary-color;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: $transition;
+
+      &:hover {
+        text-decoration: underline;
+        color: $primary-hover;
+      }
+    }
+  }
+
+  .form-options {
+    display: flex;
+    align-items: center;
+    margin: 1.5rem 0;
+
+    .checkbox-container {
+      display: flex;
+      align-items: center;
+      position: relative;
+      padding-left: 30px;
+      cursor: pointer;
+      user-select: none;
+      color: $text-color;
+      font-size: 0.95rem;
+
+      input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+
+        &:checked ~ .checkmark {
+          background-color: $primary-color;
+          border-color: $primary-color;
+
+          &:after {
+            display: block;
+          }
+        }
+      }
+
+      .checkmark {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 20px;
+        width: 20px;
+        background-color: white;
+        border: 1px solid $border-color;
+        border-radius: 4px;
+        transition: $transition;
+
+        &:after {
+          content: "";
+          position: absolute;
+          display: none;
+          left: 7px;
+          top: 3px;
+          width: 4px;
+          height: 8px;
+          border: solid white;
+          border-width: 0 2px 2px 0;
+          transform: rotate(45deg);
+        }
+      }
+
+      &:hover input ~ .checkmark {
+        border-color: $primary-color;
+      }
+    }
+  }
+
+  .login-btn {
+    width: 100%;
+    padding: 0.85rem;
+    background-color: rgb(32, 114, 161);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.1);
+      transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    &:hover:not(:disabled) {
+      background-color: $primary-hover;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+      
+      &::before {
+        width: 100%;
+      }
+    }
+
+    &:active:not(:disabled) {
+      transform: translateY(0);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    &:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+      background-color: #93c5fd;
+      box-shadow: none;
+    }
+  }
+}
+
+.signup-link {
+  text-align: center;
+  margin-top: 1.5rem;
+  color: #6b7280;
+  font-size: 0.95rem;
+
+  a {
+    color: $primary-color;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 0.25rem;
+    transition: $transition;
+
+    &:hover {
+      text-decoration: underline;
+      color: $primary-hover;
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 480px) {
+  .login-card {
+    padding: 1.5rem;
+  }
+
+  .login-header {
+    h2 {
+      font-size: 1.5rem;
+    }
+  }
+}

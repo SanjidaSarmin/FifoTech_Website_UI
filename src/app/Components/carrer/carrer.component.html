@@ -1,0 +1,158 @@
+<!-- <div class="career-page"> -->
+  <!-- Header Section -->
+  <header class="bpo-header">
+    <div class="header-content fade-in">
+      <h1 class="title fade-in" style="animation-delay: 0.2s">Start Your Career Today!</h1>
+      <div class="divider fade-in" style="animation-delay: 0.4s"></div>
+      <p class="subtitle fade-in" style="animation-delay: 0.6s">Join our dynamic team of customer service professionals. Help customers, solve problems, and grow your career in a supportive environment.</p>
+      <div class="cta-container fade-in" style="animation-delay: 0.8s">
+        <a href="tel:+1234567890" class="cta-button">
+         Call Us Now
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Stats Bar -->
+  <!-- <div class="stats-section py-5"  appScrollIntoView (isVisible)="onStatsVisible($event)">
+    <div class="container">
+      <div class="stats-container">
+        <div class="stat-item" *ngFor="let stat of stats" [id]="'stat-'+stat.id">
+         
+          <div class="stat-value">
+            <span class="counter">0</span>{{stat.suffix}}
+          </div>
+          <div class="stat-label">{{stat.label}}</div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+  <!-- Open Positions -->
+  <section id="positions" class="positions-section py-1">
+    <div class="container">
+      <div class="text-center mb-3" @fadeIn>
+        <span class="text-uppercase fw-bold large">Join Our Team</span>
+        <h2 class="display-5 mb-3">Current Openings</h2>
+        <p class="lead text-muted">We're looking for passionate individuals to join our customer support team</p>
+        <div class="divider mx-auto"></div>
+      </div>
+      
+      <div class="positions-container">
+        <div class="position-card" 
+             *ngFor="let position of positions; let i = index" 
+             [class.active]="position.isOpen" 
+             @fadeIn
+             [style.animation-delay]="i * 0.1 + 's'">
+          
+          <div class="position-header" (click)="togglePosition(position)">
+            <div class="position-title">
+              <h3 class="h4 mb-2">
+                <i class="fas fa-briefcase me-2"></i>{{ position.title }}
+              </h3>
+              <div class="position-meta mb-3">
+                <span class="badge bg-primary me-2">{{ position.type }}</span>
+                <span class="text-muted"><i class="fas fa-map-marker-alt me-1"></i> {{ position.location }}</span>
+              </div>
+              <div class="position-skills">
+                <span class="badge" *ngFor="let skill of position.requirements.slice(0, 3)">
+                  {{ skill }}
+                </span>
+                <span class="badge" *ngIf="position.requirements.length > 3">
+                  +{{ position.requirements.length - 3 }} more
+                </span>
+              </div>
+            </div>
+            <div class="toggle-icon" [class.open]="position.isOpen">
+              <i class="fas fa-chevron-down"></i>
+            </div>
+          </div>
+          
+          <div class="position-details" [@slideInOut]="position.isOpen ? 'in' : 'out'">
+            <div class="detail-content">
+              <div class="description-section">
+                <h5><i class="fas fa-file-alt me-2"></i>Job Description</h5>
+                <p>{{ position.description }}</p>
+                
+                <h5><i class="fas fa-tasks me-2"></i>Requirements</h5>
+                <ul class="requirements-list">
+                  <li *ngFor="let req of position.requirements">
+                    <i class="fas fa-check-circle"></i>
+                    <span>{{ req }}</span>
+                  </li>
+                </ul>
+              </div>
+              
+              <div class="position-actions">
+                <button class="btn btn-primary" (click)="$event.stopPropagation(); applyNow(position)">
+                  <i class="fas fa-paper-plane me-2"></i>Apply Now
+                </button>
+              </div>
+            </div>
+          </div>
+          
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits Section -->
+  <section id="benefits" class="benefits-section">
+    <div class="container px-0">
+      <div class="text-center mb-3" @fadeIn>
+        <span class="text-uppercase fw-bold small">Why Join Us</span>
+        <h2 class="display-5 fw-bold mb-3">Employee Benefits & Perks</h2>
+        <p class="lead text-muted">We believe in taking care of our team with comprehensive benefits and a supportive work environment</p>
+        <div class="divider mx-auto"></div>
+      </div>
+      <div class="benefits-layout">
+        <div class="benefits-list-container">
+          <ul class="benefits-list">
+            <li *ngFor="let benefit of benefits" @stagger>
+              <div class="benefit-content">
+                <h6>{{benefit.title}}</h6>
+                <p>{{benefit.description}}</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Work Stats Section -->
+  <section class="work-stats-section" appScrollIntoView (isVisible)="onStatsVisible($event)">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-value">
+            <span class="counter">95</span>%
+          </div>
+          <div class="stat-label">Employee Satisfaction</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">
+            <span class="counter">85</span>%
+          </div>
+          <div class="stat-label">Promotion Rate</div>
+        </div>
+        <div class="stat-item">
+       
+          <div class="stat-value">
+            <span class="counter">4.8</span>/5
+          </div>
+          <div class="stat-label">Work-Life Balance</div>
+        </div>
+        <div class="stat-item">
+         
+          <div class="stat-value">
+            <span class="counter">90</span>%
+          </div>
+          <div class="stat-label">Training Completion</div>
+        </div>
+      </div>
+    </div>
+  </section>
+<!-- </div> -->
+  

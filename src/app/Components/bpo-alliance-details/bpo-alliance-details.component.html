@@ -1,0 +1,86 @@
+<div class="container" *ngIf="!isLoading && item">
+  <button class="back-button" (click)="goBack()">
+    <i class="fas fa-arrow-left"></i> Back to All News
+  </button>
+
+  <div class="bpo-details-card">
+    <!-- Media content (image or video) for non-GBA Summit 2019 items -->
+    <ng-container *ngIf="item.id !== 'gba-summit-2019'">
+      <div class="featured-media">
+        <ng-container *ngIf="!item.isVideo; else videoTemplate">
+          <img [src]="item.image" [alt]="item.title" class="featured-image">
+        </ng-container>
+        <ng-template #videoTemplate>
+          <div class="video-container">
+            <video controls [poster]="item.thumbnail" class="featured-video">
+              <source [src]="item.videoUrl" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </ng-template>
+      </div>
+
+      <!-- Title and date below image (only for items that don't have their own header) -->
+      <div class="article-header" *ngIf="!item.content?.includes('project-details')">
+        <h1>{{ item.title }}</h1>
+        <p class="publish-date">Published on {{ getPublishedDate(item.id) | date:'longDate' }}</p>
+      </div>
+    </ng-container>
+
+    <!-- Main content -->
+    <div class="content">
+      <!-- Content with innerHTML binding -->
+      <div [innerHTML]="getItemContent(item.id)" *ngIf="item.id !== 'gba-summit-2019'"></div>
+      
+      <!-- Special layout for GBA Summit 2019 -->
+      <ng-container *ngIf="item.id === 'gba-summit-2019'">
+        <div class="project-details">
+          <!-- Header Image -->
+          <div class="header-image" *ngIf="getGalleryImages(item).length > 0">
+            <img [src]="getGalleryImages(item)[0]" [alt]="(item && item.title) || 'GBA Summit 2019'">
+          </div>
+          
+          <!-- Title and Description -->
+          <div class="content-section">
+            <h1 class="article-title">{{ item.title }}</h1>
+            <div class="description">
+              <p>FIFOTech visited Tokyo, Japan to attend GBA Summit 2019.</p>
+              <p>#GBA Summit 2019</p>
+            </div>
+          </div>
+          
+          <!-- Image Grid (2x3) -->
+          <div class="image-grid" *ngIf="getGalleryImages(item).length > 1">
+            <div class="image-row" *ngFor="let row of [0, 1, 2]">
+              <div class="image-item" *ngFor="let col of [0, 1]">
+                <ng-container *ngIf="getGalleryImages(item)[row * 2 + col + 1] as imageSrc">
+                  <img [src]="imageSrc" [alt]="'GBA Summit 2019 Image ' + (row * 2 + col + 1)">
+                </ng-container>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+
+    <!-- Contact information -->
+    <div class="contact" *ngIf="item.id === 'answernet-joins-gba'">
+      <strong>More information, contact:</strong><br>
+      <strong>Worldwide:</strong> info&#64;gbacallcenter.com<br>
+      <strong>North America:</strong> lynette.byrnes&#64;answernet.com
+    </div>
+  </div>
+</div>
+
+<div class="loading-spinner" *ngIf="isLoading">
+  <i class="fas fa-spinner fa-spin"></i>
+  <span>Loading...</span>
+</div>
+
+<div class="not-found" *ngIf="!isLoading && !item">
+  <h2>Article not found</h2>
+  <p>The requested article could not be found.</p>
+  <button class="back-button" (click)="goBack()">
+    <i class="fas fa-arrow-left"></i> Back to All News
+  </button>
+</div>

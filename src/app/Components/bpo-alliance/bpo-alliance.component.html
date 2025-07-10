@@ -1,0 +1,39 @@
+<div class="bpo-alliance-page">
+  <!-- Header Section -->
+  <header class="bpo-header">
+    <div class="header-content">
+      <h1 class="title">Global BPO Alliance</h1>
+      <div class="divider"></div>
+      <p class="subtitle">Connecting Global BPO Leaders for Excellence and Innovation</p>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="bpo-main">
+    <div class="container">
+      <div class="grid-container">
+        <!-- Row 1 -->
+        <div class="grid-item" *ngFor="let item of gridItems; let i = index" [class]="'item-' + (i + 1)">
+          <div class="item-image">
+            <img [src]="item.image" [alt]="item.title" class="grid-image">
+            <div class="overlay"></div>
+            <!-- <div class="item-icon">
+              <i [class]="item.icon"></i>
+            </div> -->
+          </div>
+          <div class="item-content">
+            <h3 class="item-title">{{ item.title }}</h3>
+            <p class="item-description">{{ item.description }}</p>
+            <a [routerLink]="item.readMoreLink" class="read-more">
+              Read More <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+          <div class="hover-content">
+            <p>{{ item.hoverText }}</p>
+            <a [routerLink]="item.readMoreLink" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>

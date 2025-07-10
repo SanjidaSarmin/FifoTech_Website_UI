@@ -1,0 +1,271 @@
+// Container and layout
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+  }
+  
+  // Back button
+  .back-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 20px;
+    margin: 0 0 30px;
+    background-color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    color: #0056b3;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+    
+    &:hover {
+      background-color: #fefeff;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    }
+    
+    &:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    
+    i {
+      font-size: 0.9em;
+      transition: transform 0.3s ease;
+    }
+    
+    &:hover i {
+      transform: translateX(-3px);
+    }
+    
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.1);
+      transition: width 0.3s ease;
+    }
+    
+    &:hover::before {
+      width: 100%;
+    }
+  }
+  
+  // Service details card
+  .service-details-card {
+    background: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+  }
+  
+  // Featured media
+  .featured-media {
+    width: 100%;
+    max-height: 500px;
+    overflow: hidden;
+    
+    .featured-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+  }
+  
+  // Service header
+  .service-header {
+    padding: 2rem;
+    border-bottom: 1px solid #eee;
+    
+    .service-title {
+      margin: 0 0 0.5rem;
+      color: #2c3e50;
+      font-size: 26px;
+      font-weight: 700;
+      line-height: 1.2;
+      font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    }
+    
+    .service-subtitle {
+      margin: 0 0 1rem;
+      color: #6c757d;
+      font-size: 17px;
+      line-height: 1.5;
+      font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+    }
+    
+    .service-meta {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      color: #6c757d;
+      font-size: 0.95rem;
+      
+      i {
+        margin-right: 0.5rem;
+        color: #6c757d;
+      }
+    }
+  }
+  
+  // Description section
+  .description-section {
+    padding: 1.2rem;
+    border-bottom: 1px solid #eee;
+    
+    .description-header {
+      margin: 0 0 1.5rem;
+      color: #2c3e50;
+      font-size: 20px;
+      font-weight: 500;
+    }
+    
+    .description-content {
+      line-height: 1.7;
+      color: #4a5568;
+      
+      ::ng-deep {
+        p {
+          margin: 0 0 1.5rem;
+          
+          &:last-child {
+            margin-bottom: 0;
+          }
+        }
+        
+        h2, h3, h4 {
+          color: #2c3e50;
+          margin: 2rem 0 1rem;
+        }
+        
+        ul, ol {
+          padding-left: 1.5rem;
+          margin-bottom: 1.5rem;
+        }
+        
+        li {
+          margin-bottom: 0.5rem;
+        }
+      }
+    }
+  }
+  
+  // Facilities section
+  .facilities-section {
+    padding: 2rem;
+    
+    h3 {
+      margin: 0 0 1.5rem;
+      color: #2c3e50;
+      font-size: 1.3rem;
+      font-weight: 600;
+    }
+    
+    .facilities-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1rem;
+      
+      li {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.3rem 1rem;
+        background-color: #f8f9fa;
+        border-radius: 6px;
+        color: #4a5568;
+        transition: all 0.2s ease;
+        
+        &:hover {
+          background-color: #e9ecef;
+          transform: translateY(-2px);
+        }
+        
+        i {
+          color: #28a745;
+          font-size: 1.1em;
+        }
+      }
+    }
+  }
+  
+  // Loading spinner
+  .loading-spinner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 300px;
+    color: #6c757d;
+    gap: 1rem;
+    
+    i {
+      font-size: 2.5rem;
+      color: #4a90e2;
+    }
+    
+    span {
+      font-size: 1.1rem;
+    }
+  }
+  
+  // Not found state
+  .not-found {
+    text-align: center;
+    padding: 4rem 2rem;
+    
+    h2 {
+      color: #2c3e50;
+      margin: 0 0 1rem;
+      font-size: 2rem;
+    }
+    
+    p {
+      color: #6c757d;
+      margin: 0 0 2rem;
+      font-size: 1.1rem;
+    }
+  }
+  
+  // Responsive adjustments
+  @media (max-width: 768px) {
+    .container {
+      padding: 1.5rem 1rem;
+    }
+    
+    .service-header {
+      padding: 1.5rem;
+      
+      .service-title {
+        font-size: 1.75rem;
+      }
+      
+      .service-subtitle {
+        font-size: 1.1rem;
+      }
+    }
+    
+    .description-section,
+    .facilities-section {
+      padding: 1.5rem;
+    }
+    
+    .facilities-list {
+      grid-template-columns: 1fr !important;
+    }
+  }

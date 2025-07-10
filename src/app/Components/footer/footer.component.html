@@ -1,0 +1,82 @@
+<div class="footer">
+  <!-- Footer Top Section -->
+  <div class="footer-top">
+    <img src="assets/footer.png" alt="Footer" />
+  </div>
+
+  <!-- Footer Main Section -->
+  <footer class="custom-footer">
+    <div class="custom-footer-container">
+      <!-- Left Section -->
+      <div class="custom-footer-left">
+        <h2 class="custom-logo">
+          <img src="assets/logo.png" alt="FifoTech Logo">
+        </h2>
+        <p class="custom-description">
+          Provide a full range of outsourcing services,
+          IT/ITES services, and solutions to businesses
+          and industry leaders, both large and small
+        </p>        
+      </div>
+
+      <!-- Center Section -->
+      <div class="custom-footer-center">
+        <h3 class="custom-opening-title">Contact Us</h3>
+        <hr class="custom-horizontal-line">
+        <div class="contact-info">
+          <!-- Phone Numbers -->
+          <div class="contact-item" *ngFor="let phone of contact?.phoneNumbers">
+            <img src="assets/tel_icon.png" alt="Phone" class="contact-icon">
+            <a [href]="'tel:' + phone" class="contact-link">{{ phone }}</a>
+          </div>
+        
+          <!-- Emails -->
+          <div class="contact-item" *ngFor="let email of contact?.emails">
+            <img src="assets/email_circle.png" alt="Email" class="contact-icon">
+            <a [href]="'mailto:' + email" class="contact-link">{{ email }}</a>
+          </div>
+        </div>
+        
+      </div>
+
+      <!-- Right Section -->
+      <div class="custom-footer-right">
+        <div class="right-section-content">
+          <h3 class="custom-social-title">Follow Us</h3>
+          <hr class="custom-horizontal-line">
+          <div class="custom-social-icons">
+            <a href="https://www.facebook.com/FIFOTech/" target="_blank" class="custom-social-link">
+              <img src="assets/fb.png" alt="Facebook" class="social-icon">
+            </a>
+            <a href="https://www.youtube.com/channel/UCD9upeq2pAQzYv9B-Gz07fg" target="_blank" class="custom-social-link">
+              <img src="assets/youtube-48.png" alt="YouTube" class="social-icon">
+            </a>
+            <a href="https://www.linkedin.com/company/fifotech/?originalSubdomain=bd" target="_blank" class="custom-social-link">
+              <img src="assets/linkedin.png" alt="LinkedIn" class="social-icon">
+            </a>
+            <a href="https://wa.me/8801813658202" target="_blank" class="custom-social-link">
+              <img src="assets/whatsapp-48.png" alt="WhatsApp" class="social-icon">
+            </a>
+            <a href="mailto:info@fifo-tech.com" target="_blank" class="custom-social-link">
+              <img src="assets/email-48.png" alt="Email" class="social-icon">
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bottom Section -->
+    <div class="custom-footer-bottom">
+      <p class="custom-footer-text">
+        Copyright © 2025 by FIFOTech. All Rights Reserved.
+      </p>
+      <nav class="custom-footer-nav">
+        <a (click)="navigateTo('/about')" class="custom-footer-link">About</a> |
+        <a (click)="navigateTo('/services')" class="custom-footer-link">Service</a> |
+        <a (click)="navigateTo('/news')" class="custom-footer-link">News</a> |
+        <a (click)="navigateTo('/career')" class="custom-footer-link">Career</a>        
+      </nav>
+    </div>
+  </footer>
+</div>

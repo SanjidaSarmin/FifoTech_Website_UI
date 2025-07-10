@@ -1,0 +1,47 @@
+<!-- Page Header -->
+<header class="page-header">
+  <div class="container h-100">
+    <div class="row h-100 align-items-center">
+      <div class="col-lg-8 mx-auto text-center">
+        <h1>Our Gallery</h1>
+        <p class="subtitle">Explore our collection of memorable moments and achievements</p>
+        <div class="header-divider"></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+  <div class="container">
+    <div class="gallery-filters">
+      <button class="filter-btn active" (click)="filterGallery('all')">All</button>
+      <button class="filter-btn" *ngFor="let category of categories" (click)="filterGallery(category)">
+        {{ category | titlecase }}
+      </button>
+    </div>
+
+    <div class="gallery-grid">
+      <div class="gallery-item" *ngFor="let item of filteredItems" [ngClass]="item.category">
+        <div class="gallery-item-inner">
+          <img [src]="item.image" [alt]="item.title" (click)="openLightbox(item)">
+          <div class="gallery-overlay">
+            <h3>{{ item.title }}</h3>
+            <p>{{ item.category }}</p>
+            <button class="view-details-btn" (click)="viewDetails(item)">View Details</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lightbox Modal -->
+  <div class="lightbox" *ngIf="lightboxActive" (click)="closeLightbox()">
+    <div class="lightbox-content" (click)="$event.stopPropagation()">
+      <span class="close-btn" (click)="closeLightbox()">&times;</span>
+      <img [src]="currentItem?.image" [alt]="currentItem?.title">
+      <div class="lightbox-caption">
+        <h3>{{ currentItem?.title }}</h3>
+        <p>{{ currentItem?.description }}</p>
+      </div>
+    </div>
+  </div>
+

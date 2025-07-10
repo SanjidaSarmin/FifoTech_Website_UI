@@ -1,0 +1,52 @@
+<div class="container" *ngIf="!loading && service">
+  <!-- Back Button -->
+  <button class="back-button" (click)="goBack()">
+    Back to Services
+  </button>
+
+  <div class="service-details-card">
+    <!-- Featured Image -->
+    <div class="featured-media" *ngIf="service.imageBase64">
+      <img [src]="service.imageBase64" [alt]="service.title" class="featured-image">
+    </div>
+
+    <!-- Service Header -->
+    <div class="service-header">
+      <h1 class="service-title">{{ service.title }}</h1>
+      <p class="service-subtitle" *ngIf="service.subtitle">
+        {{ service.subtitle }}
+      </p>
+    </div>
+
+    <!-- Description Section -->
+    <div class="description-section" *ngIf="service.descriptionHeader">
+      <h2 class="description-header">{{ service.descriptionHeader }}</h2>
+      <div class="description-content" [innerHTML]="service.description"></div>
+    </div>
+
+    <!-- Facilities Section -->
+    <div class="facilities-section" *ngIf="service.facilities && service.facilities.length > 0">
+      <h3>Facilities & Features</h3>
+      <ul class="facilities-list">
+        <li *ngFor="let facility of service.facilities">
+          <i class="fas fa-check-circle"></i> {{ facility }}
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- Loading State -->
+<div class="loading-spinner" *ngIf="loading">
+  <i class="fas fa-spinner fa-spin"></i>
+  <span>Loading service details...</span>
+</div>
+
+<!-- Not Found State -->
+<div class="not-found" *ngIf="!loading && !service">
+  <h2>Service not found</h2>
+  <p>The requested service could not be found.</p>
+  <button class="back-button" (click)="goBack()">
+    <i class="fas fa-arrow-left"></i> Back to Services
+  </button>
+</div>

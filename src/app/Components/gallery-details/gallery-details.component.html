@@ -1,0 +1,23 @@
+<div class="container" *ngIf="galleryItem">
+  <button class="back-button" (click)="goBack()">
+    <i class="fas fa-arrow-left"></i> Back to Gallery
+  </button>
+
+  <div class="gallery-details-card">
+    <div class="featured-media">
+      <img [src]="galleryItem.image" [alt]="galleryItem.title" class="featured-image">
+    </div>
+
+    <div class="article-header">
+      <h1>{{ galleryItem.title }}</h1>
+      <p class="publish-date">Added on {{ galleryItem.dateAdded | date:'longDate' }}</p>
+    </div>
+
+    <div class="content">
+      <p>{{ galleryItem.description }}</p>
+      <div class="gallery-meta">
+        <span class="category-badge">{{ galleryItem.category | titlecase }}</span>
+      </div>
+    </div>
+  </div>
+</div>

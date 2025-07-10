@@ -1,0 +1,251 @@
+<!-- Carousel Section -->
+<div class="carousel-container" (mouseenter)="resetSlideTimer()">
+  <div class="carousel-slide" [@slideAnimation]>
+    <div class="slide-content"
+      [ngStyle]="{'background-image': 'linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(' + carouselItems[currentSlide].image + ')'}">
+      <div class="slide-text">
+        <h1>{{ carouselItems[currentSlide].title }}</h1>
+        <div class="hr-animate" [class.animate]="isHrAnimated"></div>
+        <p>{{ carouselItems[currentSlide].description }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation Arrows -->
+  <button class="carousel-control prev" (click)="prevSlide(); resetSlideTimer()">
+    <span>&#10094;</span>
+  </button>
+  <button class="carousel-control next" (click)="nextSlide(); resetSlideTimer()">
+    <span>&#10095;</span>
+  </button>
+
+  <!-- Indicators -->
+  <div class="carousel-indicators" role="tablist">
+    <button *ngFor="let item of carouselItems; let i = index" type="button" role="tab"
+      [attr.aria-label]="'Slide ' + (i + 1)" [class.active]="i === currentSlide" (click)="goToSlide(i)">
+      <span class="indicator-dot"></span>
+    </button>
+  </div>
+</div>
+
+<!-- Experience Section -->
+<div class="about-container" #aboutSection>
+  <div class="about-left" #aboutLeft>
+    <img src="assets/learn.jpg" alt="Experience" />
+  </div>
+  <div class="about-right" #aboutRight>
+    <h1>Before you proceed, learn <br>
+      about our company.</h1>
+    <div class="text-box">
+      <p>
+        Within this Consortium, we offer Information Technology Services, IT Enabled Services and
+        Business Process Outsourcing Solutions. With our industry expertise and offshore liaison in
+        the whole world, we are committed to providing maximum value, high quality, and low-cost
+        services to our prospective clients.
+      </p>
+      <p>
+        We have teams of dedicated and experienced Contact Center Specialists, Digital Marketers,
+        Application Developers, e-Commerce Programmers, Graphic Designers and Skillful Trainers. Our
+        expertise in various industry-related technologies helps us advise our clients on business
+        strategies from initial strategy development right through to building and maintaining a
+        successful and effective solution. We go the extra mile for our clients and associates.
+      </p>
+      <button class="details-btn" routerLink="/about">More Details</button>
+    </div>
+  </div>
+</div>
+<!-- OutSourcing Section -->
+<div class="outsourcing-wrapper" #outsourcingSection>
+  <div class="text-section" #outsourcingText>
+    <h1>Why Outsourcing?</h1>
+    <div class="text-section-text-box">
+      <p>
+        We have a wide range of in-house professionals for your functional outsourcing needs.
+        Outsourcing your function can help you with the following things:
+      </p>
+      <ul>
+        <li>Working through professionals increase your productivity and business growth</li>
+        <li>Supporting you for decision taking and strategic thinking</li>
+        <li>No responsibility of recruiting own staffs</li>
+        <li>Meeting deadline for your tasks</li>
+        <li>Minimizing departmental cost</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Right Image Section -->
+  <div class="image-section" #outsourcingImage>
+    <img src="assets/outsourcing.jpg" alt="Why Outsourcing" />
+  </div>
+</div>
+
+<!-- Services Section-->
+<div class="services-container">
+  <h2 class="section-title">We provide special services for business</h2>
+  <p class="section-subtitle">
+    We help agencies to define their new business objectives and <br> then create the road map
+  </p>
+
+  <div class="services-grid">
+    <div class="service-card" *ngFor="let service of services | slice:0:6">
+      <div class="card-overlay"></div>
+
+      <img [src]="service.imageBase64" alt="Service Image" class="service-image" />
+      <div class="service-content">
+        <h3>{{ service.title }}</h3>
+        <p>{{ service.subtitle | slice:0:50 }}{{ service.subtitle.length > 50 ? '...' : '' }}</p>
+        <button (click)="navigateToService(service.id)" class="arrow-btn" style="cursor: pointer;">View</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="show-more-wrapper">
+    <button class="show-more-btn" (click)="navigateToServices()">Show More</button>
+  </div>
+
+</div>
+
+<!-- Dark Blue Content Section -->
+<div class="dark-content-section">
+  <div class="container">
+    <div class="content-wrapper">
+      <div class="content-text">
+        <h2>Driving Digital Transformation</h2>
+        <p>At FIFOTech, we specialize in providing exceptional call center solutions tailored to
+          your business needs. Our expert team delivers professional customer support,
+          technical assistance, and telemarketing services to enhance your customer experience
+          and drive business growth.</p>
+        <a (click)="navigateToContact()" class="cta-button">Get in Touch</a>
+      </div>
+      <div class="content-stats">
+        <div class="stat-item">
+          <div class="stat-number">21+</div>
+          <div class="stat-label">Years Experience</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">500+</div>
+          <div class="stat-label">Projects Delivered</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">98%</div>
+          <div class="stat-label">Client Satisfaction</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Trust Section -->
+<div class="trust-section">
+  <div class="trust-header">
+    <p class="trust-text">We build <strong>Trust</strong></p>
+
+    <!-- Tab Buttons -->
+    <div class="tab-buttons">
+      <button [class.active]="selectedTab === 'client'" (click)="selectTab('client')">Client</button>
+      <button [class.active]="selectedTab === 'member'" (click)="selectTab('member')">Member</button>
+      <button [class.active]="selectedTab === 'certificate'" (click)="selectTab('certificate')">Certificate</button>
+    </div>
+  </div>
+
+  <!-- Logo Grid -->
+  <div *ngIf="filteredLogos.length > 0" [ngClass]="{
+    'grid-clients': selectedTab === 'client',
+    'centered-members': selectedTab === 'member',
+    'centered-certificates': selectedTab === 'certificate'}">
+    <!-- Logo items -->
+    <div class="logo-item" *ngFor="let logo of filteredLogos">
+      <img [src]="logo.src" [alt]="logo.alt" loading="lazy" />
+    </div>
+
+  </div>
+
+
+</div>
+
+
+<!-- <div class="trust-section">
+  <div class="trust-header">
+    <p class="trust-text">We build Trust</p>
+  </div>
+
+  <div class="grid-clients">
+    <div class="logo-item">
+      <img src="assets/BACCO.png" alt="BACCO" loading="lazy">
+    </div>
+    <div class="logo-item">
+      <img src="assets/GBA.jpg" alt="GBA" loading="lazy">
+    </div>
+    <div class="logo-item">
+      <img src="assets/basis.jpg" alt="BASIS" loading="lazy">
+    </div>
+    <div class="logo-item">
+      <img src="assets/ecab.jpg" alt="ECAB" loading="lazy">
+    </div>
+    <div class="logo-item">
+      <img src="assets/satistics.jpeg" alt="Statistics" loading="lazy">
+    </div>
+    <div class="logo-item">
+      <img src="assets/Payoneer.png" alt="Payoneer" loading="lazy">
+    </div>
+    <div class="logo-item">
+      <img src="assets/Fair-Mart.png" alt="Fair Mart" loading="lazy">
+    </div>
+    <div class="logo-item">
+      <img src="assets/Akash.png" alt="Akash" loading="lazy">
+    </div>
+    <div class="logo-item">
+      <img src="assets/Nogod.jpg" alt="Nogod" loading="lazy">
+    </div>
+    <div class="logo-item">
+      <img src="assets/WIndmill.png" alt="Windmill" loading="lazy">
+    </div>
+    <div class="logo-item">
+      <img src="assets/Bangladesh-Govt.png" alt="Bangladesh Government" loading="lazy">
+    </div>
+    <div class="logo-item">
+      <img src="assets/ICT-Division.png" alt="ICT Division" loading="lazy">
+    </div>
+    <div class="logo-item">
+      <img src="assets/Logitech.png" alt="Logitech" loading="lazy">
+    </div>
+    <div class="logo-item">
+      <img src="assets/Akij-Group.png" alt="Akij Group" loading="lazy">
+    </div>
+    <div class="logo-item">
+      <img src="assets/AKG.png" alt="AKG" loading="lazy">
+    </div>
+    <div class="logo-item">
+      <img src="assets/SEIP.png" alt="SEIP" loading="lazy">
+    </div>
+    <div class="logo-item">
+      <img src="assets/FBCCI.png" alt="FBCCI" loading="lazy">
+    </div>
+    <div class="logo-item">
+      <img src="assets/BTEB.png" alt="BTEB" loading="lazy">
+    </div>
+    <div class="logo-item">
+      <img src="assets/BSCIC.png" alt=" BSCIC" loading="lazy">
+    </div>
+    <div class="logo-item">
+      <img src="assets/Robi.png" alt="Robi" loading="lazy">
+    </div>
+    <div class="logo-item">
+      <img src="assets/Surecash.png" alt="Sure_Cash" loading="lazy">
+    </div>
+    <div class="logo-item">
+      <img src="assets/Samsung.png" alt="Sumsung" loading="lazy">
+    </div>
+    <div class="logo-item">
+      <img src="assets/Symphony.jpg" alt="Symphony" loading="lazy">
+    </div>
+    <div class="logo-item">
+      <img src="assets/CNC.png" alt="CNC" loading="lazy">
+    </div>
+    <div class="logo-item">
+      <img src="assets/Digicon.png" alt="Digicon" loading="lazy">
+    </div>
+  </div>
+  
+ 
+</div> -->

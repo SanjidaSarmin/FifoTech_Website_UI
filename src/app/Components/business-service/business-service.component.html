@@ -1,0 +1,32 @@
+<!-- Header -->
+<!-- <div class="team-container">
+    <h2>We’re here to make your project much easier</h2>
+    <div class="image-wrapper">
+      <img src="assets/team.jpg" alt="Team illustration" class="zoom-effect" />
+    </div>
+  </div> -->
+
+  <!-- Services Section-->
+ <div id="services" class="services-container">
+  <h2 class="section-title">We provide special services for business</h2>
+  <p class="section-subtitle">
+    We help agencies to define their new business objectives and <br> then create the road map
+  </p>
+
+  <div class="services-grid">
+    <div class="service-card" *ngFor="let service of services">
+      <div class="card-overlay"></div>
+
+      <img [src]="service.imageBase64" alt="Service Image" class="service-image" />
+      <div class="service-content">
+        <h3>{{ service.title }}</h3>
+        <p>{{ service.subtitle | slice:0:50 }}{{ service.subtitle.length > 50 ? '...' : '' }}</p>
+        <a (click)="navigateToService(service.id)" class="arrow-btn" style="cursor: pointer;">View</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+ 
