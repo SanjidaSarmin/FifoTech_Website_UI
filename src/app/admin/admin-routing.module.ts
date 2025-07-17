@@ -8,6 +8,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { AdminLayoutComponent } from './layout/admin-layout/admin-layout.component';
 import { ContactComponent } from './Content/contact/contact.component';
 import { MessageListComponent } from './Content/message-list/message-list.component';
+import { GallaryListComponent } from './Content/gallary-list/gallary-list.component';
+import { GallaryDetailsComponent } from './Content/gallary-details/gallary-details.component';
+import { CareerListComponent } from './Content/career-list/career-list.component';
 
 const routes: Routes = [
   { 
@@ -30,9 +33,16 @@ const routes: Routes = [
           { path: ':id', component: BusinessServiceDetailsComponent, title: 'FIFOTech | Services-Details'  }
         ]
       },
+      { 
+        path: 'gallary-list',
+        children: [
+          { path: '', component: GallaryListComponent, title: 'FIFOTech | Gallary-List'  },
+          { path: ':id', component: GallaryDetailsComponent, title: 'FIFOTech | Gallary-Details'  }
+        ]
+      },
+      { path: 'career-list', component: CareerListComponent , title: 'FIFOTech | Career-List' },
       { path: 'contacts', component: ContactComponent , title: 'FIFOTech | Address' },
       { path: 'messageList', component: MessageListComponent, title: 'FIFOTech | Message-List'  },
-      { path: 'gallery', component: DashboardComponent , title: 'FIFOTech | Gallary-List' }, 
       { path: 'users', component: DashboardComponent , title: 'FIFOTech | User-List' }, 
       { path: 'settings', component: DashboardComponent , title: 'FIFOTech | Setting' }, 
       { path: '**', redirectTo: 'dashboard' }

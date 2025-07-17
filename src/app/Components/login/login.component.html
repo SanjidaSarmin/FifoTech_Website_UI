@@ -51,6 +51,9 @@
           <span *ngIf="loginForm.get('password')?.errors?.['minlength']">Password must be at least 4 characters</span>
         </div>
       </div>
+      <div *ngIf="errorMessage" style="color: red; margin-bottom: 10px;">
+        {{ errorMessage }}
+      </div>
 
       <button type="submit" class="login-btn">
         <span *ngIf="!isLoading">Sign In</span>

@@ -38,6 +38,10 @@ export class NewsComponent implements OnInit, OnDestroy {
   showDeleteModal = false;
   newsItemToDelete: number | null = null;
 
+  message: string = '';
+  messageType: 'success' | 'error' | '' = '';
+  showNotification: boolean = false;
+  
 
   editingNews: any = {
     id: null,
@@ -139,12 +143,14 @@ export class NewsComponent implements OnInit, OnDestroy {
   
     this.newsService.uploadNews(formData).subscribe({
       next: (res) => {
+        this.showNotificationMessage('News created successfully', 'success');
         console.log('Successfully submitted', res);
         this.closeModal();
         this.resetForm();
         this.loadNews(this.currentPage);
       },
       error: (err) => {
+        console.error('News creation failed:', err);
         console.error('Submission failed', err);
       }
     });
@@ -219,10 +225,12 @@ export class NewsComponent implements OnInit, OnDestroy {
       next: (res) => {
         if (res.success) {
           console.log('News updated successfully', res.data);
+          this.showNotificationMessage('News Updated successfully', 'success');
           this.closeEditModal();
           this.loadNews(this.currentPage);
         } else {
           console.error('Failed to update news:', res.message);
+          this.showNotificationMessage('News Update failed', 'error');
         }
       },
       error: (err) => {
@@ -271,10 +279,12 @@ export class NewsComponent implements OnInit, OnDestroy {
         next: () => {
           this.loadNews(this.currentPage);
           this.closeDeleteModal();
+          this.showNotificationMessage('News item deleted successfully.','success');
         },
         error: (error) => {
           console.error('Error deleting news:', error);
           this.closeDeleteModal();
+          this.showNotificationMessage('Failed to delete news item.','error');
         }
       });
     }
@@ -314,6 +324,18 @@ export class NewsComponent implements OnInit, OnDestroy {
     this.router.navigate(['/admin/news-list', id]).then(() => {
       window.scrollTo(0, 0);
     });
+  }
+
+  showNotificationMessage(message: string, type: 'success' | 'error') {
+    this.message = message;
+    this.messageType = type;
+    this.showNotification = true;
+  
+    setTimeout(() => {
+      this.showNotification = false;
+      this.message = '';
+      this.messageType = '';
+    }, 4000); // hides after 4 seconds
   }
   
 }

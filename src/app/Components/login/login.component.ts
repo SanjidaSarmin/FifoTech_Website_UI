@@ -60,11 +60,11 @@ export class LoginComponent implements OnInit {
       this.loginForm.markAllAsTouched();
       return;
     }
-
+  
     this.isLoading = true;
-
+  
     const { email, password } = this.loginForm.value;
-
+  
     this.authService.login(email, password).subscribe({
       next: data => {
         this.storageService.saveUser(data);
@@ -73,11 +73,7 @@ export class LoginComponent implements OnInit {
       },
       error: err => {
         this.isLoading = false;
-        if (err.error && err.error.error) {
-          this.errorMessage = err.error.error;
-        } else {
-          this.errorMessage = "Invalid email or password.";
-        }
+        this.errorMessage = err.error?.error || 'Invalid email or password.';
       }
     });
   }

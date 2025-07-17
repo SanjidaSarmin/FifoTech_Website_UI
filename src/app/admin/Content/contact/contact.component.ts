@@ -10,6 +10,11 @@ export class ContactComponent implements OnInit {
   contact: any;
   isEditModalOpen = false;
 
+  message: string = '';
+  messageType: 'success' | 'error' | '' = '';
+  showNotification: boolean = false;
+  
+
   editableContact = {
     addressesString: '',
     emailsString: '',
@@ -55,10 +60,26 @@ export class ContactComponent implements OnInit {
 
     this.contactService.updateContact(updated).subscribe({
       next: (res) => {
+       
         this.contact = res;
         this.isEditModalOpen = false;
       },
-      error: (err) => console.error('Failed to update contact:', err)
+      error: (err) => {
+        this.showNotificationMessage('Contact Update failed', 'error');
+        console.error('Failed to update contact:', err)
+      }
     });
+  }
+
+  showNotificationMessage(message: string, type: 'success' | 'error') {
+    this.message = message;
+    this.messageType = type;
+    this.showNotification = true;
+  
+    setTimeout(() => {
+      this.showNotification = false;
+      this.message = '';
+      this.messageType = '';
+    }, 4000); // hides after 4 seconds
   }
 }

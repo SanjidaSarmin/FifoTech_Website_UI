@@ -1,6 +1,11 @@
 <div class="contact-table-wrapper">
   <h2 class="page-title">Contact-List</h2>
 
+  <div *ngIf="showNotification"
+    [ngClass]="{'notification': true, 'success': messageType === 'success', 'error': messageType === 'error'}">
+    {{ message }}
+  </div>
+
   <!-- Edit News Modal -->
   <div class="modal" [class.show]="isEditModalOpen">
     <div class="modal-overlay" (click)="closeEditModal()"></div>
@@ -43,7 +48,7 @@
             {{ addr }}
           </div>
         </td>
-        
+
         <td>
           <div *ngFor="let email of contact.emails">
             <a [href]="'mailto:' + email">{{ email }}</a>

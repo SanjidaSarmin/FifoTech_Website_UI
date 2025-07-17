@@ -79,7 +79,7 @@
         </div>
 
         <div>
-          <label for="image">Image</label>
+          <label for="image">Image (Ratio 25:9)</label>
           <input type="file" id="image" name="image" accept="image/*" (change)="onImageSelected($event)" required />
           <div class="image-preview" *ngIf="previewUrl">
             <img [src]="previewUrl" alt="Preview" />
@@ -145,7 +145,46 @@
     </div>
   </div>
 
-  <div id="services-grid" class="services-grid">
+  <!-- Services Grid -->
+  <div class="container">
+
+    <div *ngIf="showNotification"
+      [ngClass]="{'notification': true, 'success': messageType === 'success', 'error': messageType === 'error'}">
+      {{ message }}
+    </div>
+
+    <div id="services-grid" class="services-grid">
+      <div class="grid-item" *ngFor="let service of services; let i = index" [class]="'item-' + (i + 1)">
+        <!-- Overlay & Actions -->
+        <div class="card-overlay"></div>
+        <div class="card-actions">
+          <button class="edit-btn" (click)="openEditModal(service)" title="Edit">
+            <i class="fas fa-edit"></i>
+          </button>
+          <button class="delete-btn" (click)="openDeleteModal(service.id)" title="Delete">
+            <i class="fas fa-trash"></i>
+          </button>
+        </div>
+
+        <!-- Image -->
+        <div class="item-image">
+          <img [src]="service.imageBase64" alt="Service Image" class="grid-image" />
+        </div>
+
+        <!-- Content -->
+        <div class="item-content">
+          <h3 class="item-title">{{ service.title }}</h3>
+          <p class="publish-date">
+            {{ service.subtitle | slice: 0:60 }}{{ service.subtitle.length > 60 ? '...' : '' }}
+          </p>
+          <a (click)="navigateToServices(service.id)" class="arrow-btn">View</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- <div id="services-grid" class="services-grid">
     <div class="service-card" *ngFor="let service of services">
       <div class="card-overlay"></div>
       <div class="card-actions">
@@ -163,7 +202,7 @@
         <a (click)="navigateToServices(service.id)" class="arrow-btn">View</a>
       </div>
     </div>
-  </div>
+  </div> -->
 
   <!-- Delete Confirmation Modal -->
   <div class="modal" [class.show]="showDeleteModal">
@@ -200,5 +239,3 @@
     </div>
   </div>
 </div>
-
-

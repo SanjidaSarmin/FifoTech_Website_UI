@@ -1,0 +1,55 @@
+<div class="gallery-details-container">
+    <!-- Back Button -->
+    <button class="back-button" (click)="goBack()">
+        <i class="fas fa-arrow-left"></i> Back to Gallery
+    </button>
+
+    <!-- Loading Spinner -->
+    <div *ngIf="isLoading" class="loading-spinner">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Error Message -->
+    <div *ngIf="errorMessage && !isLoading" class="error-message">
+        {{ errorMessage }}
+    </div>
+
+    <!-- Main Content -->
+    <div *ngIf="!isLoading && !errorMessage" class="gallery-content">
+        <!-- Thumbnail Image (Full Width) -->
+        <div class="thumbnail-container" *ngIf="galleryItem.thumbnailImageBase64">
+            <img [src]="'data:image/jpeg;base64,' + galleryItem.thumbnailImageBase64" [alt]="galleryItem.title"
+                class="gallery-thumbnail">
+        </div>
+
+        <!-- Title -->
+        <h1 class="gallery-title">{{ galleryItem.title }}</h1>
+
+        <!-- Subtitle -->
+        <p class="gallery-subtitle" *ngIf="galleryItem.subtitle">{{ galleryItem.subtitle }}</p>
+
+        <!-- Date -->
+        <div class="gallery-date" *ngIf="galleryItem.postDate">
+            <i class="far fa-calendar-alt"></i>
+            <span>{{ galleryItem.postDate | date:'mediumDate' }}</span>
+        </div>
+
+        <!-- Gallery Images Grid -->
+        <div class="gallery-grid" *ngIf="galleryItem.imagesBase64 && galleryItem.imagesBase64.length > 0">
+            <h2>Gallery Images</h2>
+            <div *ngFor="let pair of imagePairs" class="image-row">
+                <div *ngFor="let imageBase64 of pair" class="image-container">
+                    <img [src]="getImageUrl(imageBase64)" 
+                         alt="Gallery image" 
+                         class="gallery-image"
+                         (click)="openLightbox(imageBase64)">
+                </div>
+            </div>
+        </div>
+
+        <!-- No Images Message -->
+        <div *ngIf="!galleryItem.imagesBase64 || galleryItem.imagesBase64.length === 0" class="no-images">
+            <p>No images available in this gallery.</p>
+        </div>
+    </div>
+</div>

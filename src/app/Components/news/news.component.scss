@@ -197,7 +197,7 @@ $transition: all 0.3s ease;
     }
     
     .item-content {
-      transform: translateY(-100%);
+      transform: translateY(-90%);
     }
   }
 }
@@ -474,31 +474,44 @@ $transition: all 0.3s ease;
     min-width: 120px;
     text-align: center;
     font-weight: 500;
+    .mobile-page {
+      display: none;
+    }
+  
+    .desktop-page {
+      display: inline;
+    }
+  
+    @media (max-width: 576px) {
+      .mobile-page {
+        display: inline;
+      }
+  
+      .desktop-page {
+        display: none;
+      }
+    }
   }
 
   // Responsive adjustments
   @media (max-width: 576px) {
-    .pagination-controls {
-      padding: 0.6rem 1rem;
-      gap: 1rem;
+    .pagination-text {
+      display: none;
     }
-
     .pagination-button {
-      padding: 0.5rem 0.8rem;
-      font-size: 0.9rem;
-
-      span {
-        display: none;
-      }
-
+      padding: 0.5rem;
+      font-size: 1.1rem;
+  
       i {
+        font-size: 1.2rem;
         margin: 0;
       }
     }
-
-    .page-info {
-      min-width: auto;
-      padding: 0 0.5rem;
+  
+    .pagination-controls {
+      gap: 1rem;
+      padding: 0.5rem 1rem;
     }
   }
+  
 }

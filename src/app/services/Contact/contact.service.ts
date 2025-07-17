@@ -10,7 +10,7 @@ export class ContactService {
   private baseUrl = `${environment.apiUrl}/api/contact`;
   private msgUrl = `${environment.apiUrl}/api/contact-messages`;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   // Get contact info
   getContact(): Observable<any> {
@@ -24,11 +24,11 @@ export class ContactService {
 
   submitMessage(payload: any): Observable<{ message: string }> {
     return this.http.post<{ message: string }>(`${this.msgUrl}/submit`, payload);
-  }  
-  
+  }
+
   getAllMessages(): Observable<any[]> {
     return this.http.get<any[]>(this.msgUrl);
   }
-  
+
 }
 

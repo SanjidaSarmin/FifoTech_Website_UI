@@ -24,7 +24,7 @@ interface News {
 export class NewsService {
   private baseUrl = `${environment.apiUrl}/api/news`;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   uploadNews(formData: any): Observable<any> {
     return this.http.post(`${this.baseUrl}/upload`, formData);
@@ -33,7 +33,7 @@ export class NewsService {
   getAllNews(page: number = 0, size: number = 10): Observable<any> {
     return this.http.get<any>(`${this.baseUrl}/get-all-news?page=${page}&size=${size}`);
   }
-  
+
 
   getImageUrl(id: string): string {
     return `${this.baseUrl}/${id}/image`;
@@ -45,7 +45,7 @@ export class NewsService {
 
   updateNews(id: number, formData: any): Observable<any> {
     return this.http.put<any>(
-      `${this.baseUrl}/update/${id}`, 
+      `${this.baseUrl}/update/${id}`,
       formData,
       {
         headers: new HttpHeaders({
@@ -64,5 +64,5 @@ export class NewsService {
       `${this.baseUrl}/search?title=${encodeURIComponent(title)}&page=${page}&size=${size}`
     );
   }
-  
+
 }

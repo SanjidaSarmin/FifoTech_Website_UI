@@ -68,6 +68,13 @@ export class HomeComponent implements OnInit, AfterViewInit {
       window.scrollTo(0, 0);
     });
   }
+  videoSlide = {
+    title: 'We Ensure Your Presence in The Global World',
+    description: 'FIFOTech provides Outsourcing Services, IT Solutions, and more for global excellence.',
+     video: 'assets/videos/GBA-71-TV-1.mp4'
+  };
+  
+  
 
   carouselItems = [
     
@@ -82,7 +89,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
       image: 'assets/call_centre.jpg',
     },
     {
-      title: 'Software Design & Development',
+      title: 'Application Design & Development',
       description: 'FIFOTech develops static and dynamic applications providing unique design and bug-free development.',
       image: 'assets/softwere.jpg'
     },

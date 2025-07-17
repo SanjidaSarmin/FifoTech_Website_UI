@@ -42,6 +42,11 @@ export class BusinessServiceComponent implements OnInit{
   searchTerm: string = ''; 
   searchPage: number = 0;
 
+  message: string = '';
+  messageType: 'success' | 'error' | '' = '';
+  showNotification: boolean = false;
+  
+
   newService: any = {
     title: '',
     subtitle: '',
@@ -183,12 +188,14 @@ export class BusinessServiceComponent implements OnInit{
       this.businessService.updateService(this.editingService.id, formData).subscribe({
         next: (response) => {
           console.log('Service updated successfully', response);
+          this.showNotificationMessage('Service Updated successfully', 'success');
           this.closeEditModal();
           this.fetchServices(this.currentPage);
           this.isLoading = false;
         },
         error: (error) => {
           console.error('Error updating service', error);
+          this.showNotificationMessage('Service Update failed', 'error');
           this.isLoading = false;
         }
       });
@@ -232,12 +239,14 @@ export class BusinessServiceComponent implements OnInit{
   
     this.businessService.uploadService(formData).subscribe({
       next: (res) => {
+        this.showNotificationMessage('Service created successfully', 'success');
         console.log('Service added successfully:', res);
         this.resetForm();
         this.closeModal();
         this.fetchServices(); // refresh the list
       },
       error: (err) => {
+        console.error('Service creation failed:', err);
         console.error('Error adding service:', err);
       }
     });
@@ -273,10 +282,12 @@ export class BusinessServiceComponent implements OnInit{
         next: () => {
           this.fetchServices(this.currentPage);
           this.closeDeleteModal();
+          this.showNotificationMessage('Service item deleted successfully.','success');
         },
         error: (error) => {
           console.error('Error deleting news:', error);
           this.closeDeleteModal();
+          this.showNotificationMessage('Failed to delete service item.','error');
         }
       });
     }
@@ -301,39 +312,18 @@ export class BusinessServiceComponent implements OnInit{
     });
   }
   
+  showNotificationMessage(message: string, type: 'success' | 'error') {
+    this.message = message;
+    this.messageType = type;
+    this.showNotification = true;
+  
+    setTimeout(() => {
+      this.showNotification = false;
+      this.message = '';
+      this.messageType = '';
+    }, 4000); // hides after 4 seconds
+  }
 
-  servicesList = [
-    {
-      title: 'Contact Center Services',
-      description: 'Contact Center Services are an excellent way to [...]',
-      image: 'assets/call_center.jpg'
-    },
-    {
-      title: 'Back-Office Services',
-      description: 'FIFOTech believes that Back-Office Services are a vital [...]',
-      image: 'assets/back-office.jpg'
-    },
-    {
-      title: 'Digital Marketing',
-      description: 'FIFOTech Digital Marketing Services will help your business [...]',
-      image: 'assets/degital_marketing.jfif'
-    },
-    {
-      title: 'Creative Design Services',
-      description: 'FIFOTech Creative Design Services are highly effective & [...]',
-      image: 'assets/learn.jpg'
-    },
-    {
-      title: 'Application Design & Development',
-      description: 'FIFOTech develops static and dynamic applications. Our in-house [...]',
-      image: 'assets/app.jpg'
-    },
-    {
-      title: 'Skills Development',
-      description: 'FIFOTech imparts world-class training ranging from basic to [...]',
-      image: 'assets/skills.jpg'
-    }
-  ];
 }
   
 

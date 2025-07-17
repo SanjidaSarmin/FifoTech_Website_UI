@@ -10,6 +10,7 @@
       </div>
     </div>
   </div>
+  
 
   <!-- Navigation Arrows -->
   <button class="carousel-control prev" (click)="prevSlide(); resetSlideTimer()">
@@ -27,6 +28,21 @@
     </button>
   </div>
 </div>
+
+<!-- <div class="video-slide-container">
+  <video autoplay muted loop playsinline class="video-background">
+    <source [src]="videoSlide.video" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+
+  <div class="slide-text">
+    <h1>{{ videoSlide.title }}</h1>
+    <div class="hr-animate" [class.animate]="isHrAnimated"></div>
+    <p>{{ videoSlide.description }}</p>
+  </div>
+</div> -->
+
+
 
 <!-- Experience Section -->
 <div class="about-container" #aboutSection>
@@ -85,16 +101,21 @@
   <p class="section-subtitle">
     We help agencies to define their new business objectives and <br> then create the road map
   </p>
-
-  <div class="services-grid">
-    <div class="service-card" *ngFor="let service of services | slice:0:6">
-      <div class="card-overlay"></div>
-
-      <img [src]="service.imageBase64" alt="Service Image" class="service-image" />
-      <div class="service-content">
-        <h3>{{ service.title }}</h3>
-        <p>{{ service.subtitle | slice:0:50 }}{{ service.subtitle.length > 50 ? '...' : '' }}</p>
-        <button (click)="navigateToService(service.id)" class="arrow-btn" style="cursor: pointer;">View</button>
+  <!-- Service grid -->
+  <div class="container">
+    <div class="services-grid">
+      <div class="grid-item" *ngFor="let service of services | slice: 0:6; let i = index" [class]="'item-' + (i + 1)">
+        <div class="item-image">
+          <img [src]="service.imageBase64" [alt]="service.title" class="grid-image" />
+          <div class="overlay"></div>
+        </div>
+        <div class="item-content">
+          <h3 class="item-title">{{ service.title }}</h3>
+          <p class="publish-date">
+            {{ service.subtitle | slice: 0:80 }}{{ service.subtitle.length > 80 ? '...' : '' }}
+          </p>
+          <a (click)="navigateToService(service.id)" class="arrow-btn">View</a>
+        </div>
       </div>
     </div>
   </div>
@@ -163,89 +184,3 @@
 
 </div>
 
-
-<!-- <div class="trust-section">
-  <div class="trust-header">
-    <p class="trust-text">We build Trust</p>
-  </div>
-
-  <div class="grid-clients">
-    <div class="logo-item">
-      <img src="assets/BACCO.png" alt="BACCO" loading="lazy">
-    </div>
-    <div class="logo-item">
-      <img src="assets/GBA.jpg" alt="GBA" loading="lazy">
-    </div>
-    <div class="logo-item">
-      <img src="assets/basis.jpg" alt="BASIS" loading="lazy">
-    </div>
-    <div class="logo-item">
-      <img src="assets/ecab.jpg" alt="ECAB" loading="lazy">
-    </div>
-    <div class="logo-item">
-      <img src="assets/satistics.jpeg" alt="Statistics" loading="lazy">
-    </div>
-    <div class="logo-item">
-      <img src="assets/Payoneer.png" alt="Payoneer" loading="lazy">
-    </div>
-    <div class="logo-item">
-      <img src="assets/Fair-Mart.png" alt="Fair Mart" loading="lazy">
-    </div>
-    <div class="logo-item">
-      <img src="assets/Akash.png" alt="Akash" loading="lazy">
-    </div>
-    <div class="logo-item">
-      <img src="assets/Nogod.jpg" alt="Nogod" loading="lazy">
-    </div>
-    <div class="logo-item">
-      <img src="assets/WIndmill.png" alt="Windmill" loading="lazy">
-    </div>
-    <div class="logo-item">
-      <img src="assets/Bangladesh-Govt.png" alt="Bangladesh Government" loading="lazy">
-    </div>
-    <div class="logo-item">
-      <img src="assets/ICT-Division.png" alt="ICT Division" loading="lazy">
-    </div>
-    <div class="logo-item">
-      <img src="assets/Logitech.png" alt="Logitech" loading="lazy">
-    </div>
-    <div class="logo-item">
-      <img src="assets/Akij-Group.png" alt="Akij Group" loading="lazy">
-    </div>
-    <div class="logo-item">
-      <img src="assets/AKG.png" alt="AKG" loading="lazy">
-    </div>
-    <div class="logo-item">
-      <img src="assets/SEIP.png" alt="SEIP" loading="lazy">
-    </div>
-    <div class="logo-item">
-      <img src="assets/FBCCI.png" alt="FBCCI" loading="lazy">
-    </div>
-    <div class="logo-item">
-      <img src="assets/BTEB.png" alt="BTEB" loading="lazy">
-    </div>
-    <div class="logo-item">
-      <img src="assets/BSCIC.png" alt=" BSCIC" loading="lazy">
-    </div>
-    <div class="logo-item">
-      <img src="assets/Robi.png" alt="Robi" loading="lazy">
-    </div>
-    <div class="logo-item">
-      <img src="assets/Surecash.png" alt="Sure_Cash" loading="lazy">
-    </div>
-    <div class="logo-item">
-      <img src="assets/Samsung.png" alt="Sumsung" loading="lazy">
-    </div>
-    <div class="logo-item">
-      <img src="assets/Symphony.jpg" alt="Symphony" loading="lazy">
-    </div>
-    <div class="logo-item">
-      <img src="assets/CNC.png" alt="CNC" loading="lazy">
-    </div>
-    <div class="logo-item">
-      <img src="assets/Digicon.png" alt="Digicon" loading="lazy">
-    </div>
-  </div>
-  
- 
-</div> -->

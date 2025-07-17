@@ -11,37 +11,28 @@
   </div>
 </header>
 
-  <div class="container">
-    <div class="gallery-filters">
-      <button class="filter-btn active" (click)="filterGallery('all')">All</button>
-      <button class="filter-btn" *ngFor="let category of categories" (click)="filterGallery(category)">
-        {{ category | titlecase }}
-      </button>
-    </div>
+<div class="container">
+  <!-- gallery Grid -->
+    <div class="container">
+      <div class="grid-container">
+        <div class="grid-item" *ngFor="let item of galleryItems; let i = index" [class]="'item-' + (i + 1)">
 
-    <div class="gallery-grid">
-      <div class="gallery-item" *ngFor="let item of filteredItems" [ngClass]="item.category">
-        <div class="gallery-item-inner">
-          <img [src]="item.image" [alt]="item.title" (click)="openLightbox(item)">
-          <div class="gallery-overlay">
-            <h3>{{ item.title }}</h3>
-            <p>{{ item.category }}</p>
-            <button class="view-details-btn" (click)="viewDetails(item)">View Details</button>
+          <div class="item-image">
+            <img *ngIf="item.thumbnailImageBase64" [src]="'data:image/jpeg;base64,' + item.thumbnailImageBase64"
+              [alt]="item.title" class="grid-image" (click)="openLightbox(item)" />
+            <div class="overlay"></div>
           </div>
+
+          <div class="item-content">
+            <h3 class="item-title">{{ item.title }}</h3>
+            <p class="item-description">{{ item.subtitle }}</p>
+            <a class="read-more" (click)="navigateToGallary(item.id); $event.stopPropagation()">
+              View Details
+            </a>
+          </div>
+
         </div>
       </div>
-    </div>
-  </div>
 
-  <!-- Lightbox Modal -->
-  <div class="lightbox" *ngIf="lightboxActive" (click)="closeLightbox()">
-    <div class="lightbox-content" (click)="$event.stopPropagation()">
-      <span class="close-btn" (click)="closeLightbox()">&times;</span>
-      <img [src]="currentItem?.image" [alt]="currentItem?.title">
-      <div class="lightbox-caption">
-        <h3>{{ currentItem?.title }}</h3>
-        <p>{{ currentItem?.description }}</p>
-      </div>
-    </div>
-  </div>
 
+    </div>

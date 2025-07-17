@@ -1,0 +1,155 @@
+<div class="table-header">
+    <h2 class="table-title">Job Post</h2>
+    <button class="add-button" (click)="openAddCareerModal()">Add Job Post</button>
+</div>
+
+<!-- Add Career Modal -->
+<div class="modal" [class.show]="isAddCareerModalOpen">
+    <div class="modal-overlay" (click)="closeAddCareerModal()"></div>
+    <div class="modal-content">
+        <button class="close-button" (click)="closeAddCareerModal()">×</button>
+        <h3 class="modal-title">Add New Career</h3>
+
+        <form (ngSubmit)="submitAddCareer()" #addCareerForm="ngForm">
+            <div>
+                <label for="title">Title</label>
+                <input type="text" id="title" name="title" [(ngModel)]="newCareer.title" required />
+            </div>
+
+            <div>
+                <label for="type">Type</label>
+                <input type="text" id="type" name="type" [(ngModel)]="newCareer.type" required />
+            </div>
+
+            <div>
+                <label for="location">Location</label>
+                <input type="text" id="location" name="location" [(ngModel)]="newCareer.location" required />
+            </div>
+
+            <div>
+                <label for="description">Description</label>
+                <textarea id="description" name="description" [(ngModel)]="newCareer.description" rows="3"
+                    required></textarea>
+            </div>
+
+            <div>
+                <label for="requirements">Requirements (comma separated)</label>
+                <input type="text" id="requirements" name="requirement" [(ngModel)]="newCareer.requirement"
+                    placeholder="e.g. Java, Spring Boot, SQL" required />
+            </div>
+
+            <div>
+                <label for="open">Open</label>
+                <input type="checkbox" id="open" name="open" [(ngModel)]="newCareer.open" />
+            </div>
+
+            <button type="submit" class="submit-button" [disabled]="!addCareerForm.form.valid">
+                Add Career
+            </button>
+        </form>
+    </div>
+</div>
+
+<!-- Edit Career Modal -->
+<div class="modal" [class.show]="isEditCareerModalOpen">
+    <div class="modal-overlay" (click)="closeEditCareerModal()"></div>
+    <div class="modal-content">
+        <button class="close-button" (click)="closeEditCareerModal()">×</button>
+        <h3 class="modal-title">Edit Career</h3>
+
+        <form (ngSubmit)="submitEditCareer()" #editCareerForm="ngForm">
+            <div>
+                <label for="editTitle">Title</label>
+                <input type="text" id="editTitle" name="title" [(ngModel)]="editingCareer.title" required />
+            </div>
+
+            <div>
+                <label for="editType">Type</label>
+                <input type="text" id="editType" name="type" [(ngModel)]="editingCareer.type" required />
+            </div>
+
+            <div>
+                <label for="editLocation">Location</label>
+                <input type="text" id="editLocation" name="location" [(ngModel)]="editingCareer.location" required />
+            </div>
+
+            <div>
+                <label for="editDescription">Description</label>
+                <textarea id="editDescription" name="description" [(ngModel)]="editingCareer.description" rows="3"
+                    required></textarea>
+            </div>
+
+            <div>
+                <label for="editRequirements">Requirements (comma separated)</label>
+                <input type="text" id="editRequirements" name="requirement" [(ngModel)]="editingCareer.requirement"
+                    placeholder="e.g. Java, Spring Boot, SQL" required />
+            </div>
+
+            <div>
+                <label for="editOpen">Open</label>
+                <input type="checkbox" id="editOpen" name="open" [(ngModel)]="editingCareer.open" />
+            </div>
+
+            <button type="submit" class="submit-button" [disabled]="!editCareerForm.form.valid">
+                Update Career
+            </button>
+        </form>
+    </div>
+</div>
+
+<div *ngIf="showNotification"
+    [ngClass]="{'notification': true, 'success': messageType === 'success', 'error': messageType === 'error'}">
+    {{ message }}
+</div>
+
+<div class="table-wrapper">
+    <table class="custom-table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Type</th>
+                <th>Location</th>
+                <th>Description</th>
+                <th>Requirements</th>
+                <th>Open</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let career of careers">
+                <td>{{ career.title }}</td>
+                <td>{{ career.type }}</td>
+                <td>{{ career.location }}</td>
+                <td>{{ career.description }}</td>
+                <td>
+                    <ul>
+                        <li *ngFor="let req of career.requirement">{{ req }}</li>
+                    </ul>
+                </td>
+                <td>{{ career.open ? 'Yes' : 'No' }}</td>
+                <td>
+                    <div class="action-buttons">
+                        <button class="edit-button" (click)="openEditCareerModal(career)">Edit</button>
+                        <button class="delete-button" (click)="openDeleteModal(career.id)">Delete</button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Delete Confirmation Modal -->
+  <div class="modal" [class.show]="showDeleteModal">
+    <div class="modal-overlay" (click)="closeDeleteModal()"></div>
+    <div class="modal-content">
+      <h3 class="modal-title">Confirm Delete</h3>
+      <button class="close-button" (click)="closeDeleteModal()" aria-label="Close">×</button>
+      <div class="modal-body">
+        <p class="delete-message">Are you sure you want to delete this news item?</p>
+      </div>
+      <div class="modal-footer center-buttons">
+        <button class="btn btn-cancel" (click)="closeDeleteModal()">Cancel</button>
+        <button class="btn btn-delete" (click)="confirmDelete()">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>

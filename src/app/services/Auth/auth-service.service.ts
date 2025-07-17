@@ -4,17 +4,17 @@ import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-const AUTH_API = environment.apiUrl+'/api/auth/';
+const AUTH_API = environment.apiUrl + '/api/auth/';
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json'})
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 }
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthServiceService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   login(email: string, password: string): Observable<any> {
     return this.http.post(
@@ -26,7 +26,7 @@ export class AuthServiceService {
       httpOptions
     );
   }
-  
+
 
   register(username: string, userFullName: string, email: string, password: string): Observable<any> {
     return this.http.post(
@@ -42,6 +42,6 @@ export class AuthServiceService {
   }
 
   logout(): Observable<any> {
-    return this.http.post(AUTH_API + 'signout', { }, httpOptions);
+    return this.http.post(AUTH_API + 'signout', {}, httpOptions);
   }
 }

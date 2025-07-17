@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { GalleryItem } from '../gallery/gallery.component';
-import { catchError, of } from 'rxjs';
 import { GalleryService } from 'src/app/services/gallery/gallery.service';
+import { catchError } from 'rxjs/operators';
+import { of } from 'rxjs';
+
 interface GalleryResponse {
   id: number;
   title: string;
@@ -13,11 +14,11 @@ interface GalleryResponse {
 }
 
 @Component({
-  selector: 'app-gallery-details',
-  templateUrl: './gallery-details.component.html',
-  styleUrls: ['./gallery-details.component.scss']
+  selector: 'app-gallary-details',
+  templateUrl: './gallary-details.component.html',
+  styleUrls: ['./gallary-details.component.scss']
 })
-export class GalleryDetailsComponent implements OnInit {
+export class GallaryDetailsComponent implements OnInit {
   galleryItem: GalleryResponse = {
     id: 0,
     title: '',
@@ -117,7 +118,6 @@ export class GalleryDetailsComponent implements OnInit {
   }
 
   goBack(): void {
-    this.router.navigate(['/gallery']);
+    this.router.navigate(['/admin/gallary-list']);
   }
 }
-

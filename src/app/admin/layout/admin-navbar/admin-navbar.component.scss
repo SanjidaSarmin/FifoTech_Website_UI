@@ -225,9 +225,17 @@
   }
 
   .user-menu {
-    justify-content: flex-end;
+    justify-content: flex-start;
     margin-top: 0.5rem;
     padding-top: 0.5rem;
     border-top: 1px solid #e2e8f0;
+    
+    .profile-dropdown {
+      .dropdown-menu {
+        left: 0;          // 👈 Shift to the left
+        right: auto;      // 👈 Disable right alignment
+        transform: translateY(-10px); // optional reset
+      }
+    }
   }
 }

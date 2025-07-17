@@ -21,6 +21,9 @@ import { BusinessServiceComponent } from './Content/business-service/business-se
 import { BusinessServiceDetailsComponent } from './Content/business-service-details/business-service-details.component';
 import { ContactComponent } from './Content/contact/contact.component';
 import { MessageListComponent } from './Content/message-list/message-list.component';
+import { GallaryListComponent } from './Content/gallary-list/gallary-list.component';
+import { GallaryDetailsComponent } from './Content/gallary-details/gallary-details.component';
+import { CareerListComponent } from './Content/career-list/career-list.component';
 
 // Shared Components
 // TODO: Add any shared components here
@@ -35,6 +38,9 @@ import { MessageListComponent } from './Content/message-list/message-list.compon
     BusinessServiceDetailsComponent,
     ContactComponent,
     MessageListComponent,
+    GallaryListComponent,
+    GallaryDetailsComponent,
+    CareerListComponent,
   ],
   imports: [
     CommonModule,

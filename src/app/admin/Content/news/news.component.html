@@ -145,6 +145,12 @@
   <!-- News Grid -->
   <section class="news-section">
     <div class="container">
+
+      <div *ngIf="showNotification"
+        [ngClass]="{'notification': true, 'success': messageType === 'success', 'error': messageType === 'error'}">
+        {{ message }}
+      </div>
+
       <div class="grid-container">
         <!-- News Items -->
         <div class="grid-item" *ngFor="let item of newsItems; let i = index" [class]="'item-' + (i + 1)">
@@ -199,19 +205,24 @@
         <div class="pagination-controls">
           <button (click)="prevPage()" [disabled]="currentPage === 0" [class.disabled]="currentPage === 0"
             class="pagination-button prev" aria-label="Previous page">
-            <i class="fas fa-chevron-left"></i> Previous
+            <i class="fas fa-chevron-left"></i>
+            <span class="pagination-text">Previous</span>
           </button>
 
           <div class="page-info">
-            <span>Page {{ currentPage + 1 }} of {{ totalPages }}</span>
+            <span class="desktop-page">Page {{ currentPage + 1 }} of {{ totalPages }}</span>
+            <span class="mobile-page">Page {{ currentPage + 1 }} Of {{ totalPages }}</span>
           </div>
+
 
           <button (click)="nextPage()" [disabled]="currentPage + 1 >= totalPages"
             [class.disabled]="currentPage + 1 >= totalPages" class="pagination-button next" aria-label="Next page">
-            Next <i class="fas fa-chevron-right"></i>
+            <span class="pagination-text">Next</span>
+            <i class="fas fa-chevron-right"></i>
           </button>
         </div>
       </div>
+
     </div>
   </section>
 </main>

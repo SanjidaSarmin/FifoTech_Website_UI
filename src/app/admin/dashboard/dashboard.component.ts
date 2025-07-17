@@ -34,7 +34,7 @@ export class DashboardComponent implements OnInit {
     },
     {
       title: 'Gallery',
-      path: '/admin/gallery',
+      path: '/admin/gallary-list',
       iconImage: 'assets/gallary.png',
       description: 'Manage gallery items'
     },
