@@ -1634,14 +1634,21 @@
 // Responsive styles for mobile
 @media (max-width: 768px) {
   .newspaper-container {
-    .newspaper-left, .newspaper-right {
+    flex-direction: column;
+
+    .newspaper-left {
+      order: 1;
       width: 100%;
-      padding: 0 15px;
+      padding: 0 1px;
     }
-    
-    .newspaper-image {
-      margin: 0 auto 20px;
+
+    .newspaper-right {
+      order: 2;
+      width: 100%;
+      padding: 0 1px;
     }
   }
 }
+
+
 

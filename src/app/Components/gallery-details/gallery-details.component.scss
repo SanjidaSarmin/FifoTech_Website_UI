@@ -91,15 +91,14 @@ $error-color: #e74c3c;
 // Thumbnail
 .thumbnail-container {
   width: 100%;
-  margin-bottom: 2rem;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
 
-  .gallery-thumbnail {
-    aspect-ratio: 20/9;
-    display: block;
-  }
+.gallery-thumbnail {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover; /* Optional: keeps image aspect clean */
+  border-radius: 8px;
 }
 
 // Title
@@ -238,7 +237,6 @@ $error-color: #e74c3c;
     border-radius: 6px;
 
     .gallery-thumbnail {
-      aspect-ratio: 16/10;
       width: 100%;
       height: auto;
       display: block;
@@ -254,7 +252,7 @@ $error-color: #e74c3c;
   }
 
   .gallery-date {
-    flex-direction: column;
+    flex-direction: row;
     align-items: flex-start;
     font-size: 0.85rem;
     gap: 4px;
@@ -263,6 +261,7 @@ $error-color: #e74c3c;
   .gallery-grid {
 
     h2 {
+      
       font-size: 1.2rem;
     }
 

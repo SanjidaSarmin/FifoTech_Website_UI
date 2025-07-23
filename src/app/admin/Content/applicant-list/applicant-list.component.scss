@@ -1,0 +1,294 @@
+.table-wrapper {
+    overflow-x: auto;
+    margin: 2rem 0;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    max-width: 100%;
+}
+
+.table-wrapper::-webkit-scrollbar {
+    height: 8px;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+}
+
+.table-header {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    border-radius: 10px;
+
+
+    @media (min-width: 640px) {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.25rem 2rem;
+    }
+}
+
+.table-title {
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: #1a365d;
+    margin: 0;
+    text-align: center;
+    position: relative;
+    padding-bottom: 0.5rem;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100px;
+        height: 3px;
+        background: #046dc4;
+        border-radius: 3px;
+
+        @media (min-width: 640px) {
+            left: 0;
+            transform: none;
+        }
+    }
+
+    @media (min-width: 640px) {
+        text-align: left;
+        padding-bottom: 0.75rem;
+        font-size: 1.5rem;
+    }
+}
+
+.applicant-table-container {
+    padding: 1.5rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    margin: 1.5rem auto;
+    max-width: 95%;
+    overflow: hidden;
+}
+
+.custom-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    table-layout: fixed;
+    border-spacing: 0;
+    margin: 0;
+    padding: 0;
+}
+
+@media (max-width: 1024px) {
+    .custom-table {
+        min-width: 900px;
+    }
+}
+
+@media (max-width: 768px) {
+    .custom-table {
+        min-width: 800px;
+    }
+}
+
+@media (max-width: 480px) {
+    .custom-table {
+        min-width: 600px;
+    }
+}
+
+.custom-table thead {
+    background-color: #006492;
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.custom-table th,
+.custom-table td {
+    padding: 12px 15px;
+    border: 1px solid #e0e0e0;
+    text-align: left;
+    vertical-align: middle;
+    font-size: 14px;
+    line-height: 1.5;
+    box-sizing: border-box;
+}
+
+/* Ensure consistent column widths */
+.custom-table th:nth-child(1),
+.custom-table td:nth-child(1) { width: 5%; }  /* ID */
+.custom-table th:nth-child(2),
+.custom-table td:nth-child(2) { width: 10%; } /* Full Name */
+.custom-table th:nth-child(3),
+.custom-table td:nth-child(3) { width: 15%; } /* Email */
+.custom-table th:nth-child(4),
+.custom-table td:nth-child(4) { width: 8%; }  /* Phone */
+.custom-table th:nth-child(5),
+.custom-table td:nth-child(5) { width: 7%; }  /* Gender */
+.custom-table th:nth-child(6),
+.custom-table td:nth-child(6) { width: 10%; } /* Location */
+.custom-table th:nth-child(7),
+.custom-table td:nth-child(7) { width: 10%; } /* Education */
+.custom-table th:nth-child(8),
+.custom-table td:nth-child(8) { width: 10%; } /* Status */
+.custom-table th:nth-child(9),
+.custom-table td:nth-child(9) { width: 15%; } /* Experience */
+.custom-table th:nth-child(10),
+.custom-table td:nth-child(10) { width: 10%; } /* Position */
+.custom-table th:nth-child(11),
+.custom-table td:nth-child(11) { width: 10%; } /* Resume */
+.custom-table th:nth-child(12),
+.custom-table td:nth-child(12) { width: 10%; } /* Actions */
+
+@media (max-width: 768px) {
+
+    .custom-table th,
+    .custom-table td {
+        padding: 8px 10px;
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .custom-table th,
+    .custom-table td {
+        padding: 6px 8px;
+    }
+}
+
+.custom-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.custom-table tbody tr:hover {
+    background-color: #f1f7fb;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+    .action-buttons {
+        gap: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .action-buttons {
+        flex-direction: column;
+        gap: 8px;
+        width: 100%;
+    }
+
+    .action-buttons>* {
+        width: 100%;
+    }
+}
+
+.delete-button {
+    padding: 6px 10px;
+    font-size: 0.85rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 70px;
+}
+
+@media (max-width: 768px) {
+    .delete-button {
+        padding: 5px 8px;
+        font-size: 0.8rem;
+        min-width: 60px;
+    }
+}
+
+@media (max-width: 480px) {
+    .delete-button {
+        width: 100%;
+        margin: 2px 0;
+    }
+}
+
+/* Delete button style */
+.delete-button {
+    padding: 6px 12px 6px 8px;
+    font-size: 0.85rem;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 90px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+
+    i {
+        font-size: 0.9em;
+        color: white;
+    }
+
+    &:hover {
+        background-color: #c82333;
+        transform: translateY(-1px);
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    &:active {
+        transform: translateY(0);
+    }
+}
+
+/* Download button style */
+.btn-download {
+    padding: 6px 12px 6px 8px;
+    font-size: 0.85rem;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 100px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+
+    i {
+        font-size: 0.9em;
+        color: white;
+    }
+
+    &:hover {
+        background-color: #218838;
+        transform: translateY(-1px);
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    &:active {
+        transform: translateY(0);
+    }
+}

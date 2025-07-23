@@ -33,6 +33,9 @@ export class CareerListComponent implements OnInit{
     location: '',
     description: '',
     requirement: '',
+    salary: '',
+    experience: '',
+    deadline: '',
     open: false,
   };
 
@@ -43,6 +46,9 @@ export class CareerListComponent implements OnInit{
     location: '',
     description: '',
     requirement: '',
+    salary: '',
+    experience: '',
+    deadline: '',
     open: false,
   };
 
@@ -54,6 +60,9 @@ export class CareerListComponent implements OnInit{
       location: '',
       description: '',
       requirement: '',
+      salary: '',
+      experience: '',
+      deadline: '',
       open: false,
     };
   }

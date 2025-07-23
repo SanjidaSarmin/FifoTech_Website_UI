@@ -15,6 +15,7 @@ import { GalleryDetailsComponent } from './Components/gallery-details/gallery-de
 import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
 import { BusinessServicesDetailsComponent } from './Components/business-services-details/business-services-details.component';
 import { AuthGuard } from './auth.guard';
+import { JobApplicationComponent } from './Components/job-application/job-application.component';
 
 const routes: Routes = [
   // Main layout routes (with navbar and footer)
@@ -27,6 +28,7 @@ const routes: Routes = [
       { path: 'contact', component: ContactComponent, title: 'FIFOTech | Contact' },
       { path: 'about', component: AboutComponent, title: 'FIFOTech | About' },
       { path: 'career', component: CarrerComponent, title: 'FIFOTech | Career' },
+      { path: 'jobapplication/:id', component: JobApplicationComponent, title: 'FIFOTech | Job Appplication' },
       { path: 'news', component: NewsComponent, title: 'FIFOTech | News' },
       { path: 'news/:id', component: NewsDetailComponent, title: 'FIFOTech | News Detail' },
       { path: 'services', component: BusinessServiceComponent, title: 'FIFOTech | Services' },

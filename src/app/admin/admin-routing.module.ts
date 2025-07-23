@@ -11,6 +11,7 @@ import { MessageListComponent } from './Content/message-list/message-list.compon
 import { GallaryListComponent } from './Content/gallary-list/gallary-list.component';
 import { GallaryDetailsComponent } from './Content/gallary-details/gallary-details.component';
 import { CareerListComponent } from './Content/career-list/career-list.component';
+import { ApplicantListComponent } from './Content/applicant-list/applicant-list.component';
 
 const routes: Routes = [
   { 
@@ -41,6 +42,7 @@ const routes: Routes = [
         ]
       },
       { path: 'career-list', component: CareerListComponent , title: 'FIFOTech | Career-List' },
+      { path: 'applicant-list', component: ApplicantListComponent , title: 'FIFOTech | Applicant-list' },
       { path: 'contacts', component: ContactComponent , title: 'FIFOTech | Address' },
       { path: 'messageList', component: MessageListComponent, title: 'FIFOTech | Message-List'  },
       { path: 'users', component: DashboardComponent , title: 'FIFOTech | User-List' }, 

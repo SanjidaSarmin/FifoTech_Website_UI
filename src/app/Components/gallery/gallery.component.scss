@@ -6,6 +6,7 @@ $light-gray: #f5f7fa;
 $white: #ffffff;
 $transition: all 0.3s ease;
 $border-color: #e0e0e0;
+$error-color: #e74c3c;
 
 // Grid item hover effect
 .grid-item {
@@ -98,6 +99,14 @@ $border-color: #e0e0e0;
       opacity: 0;
       animation-delay: 0.6s;
     }
+    .error-message {
+      background-color: lighten($error-color, 35%);
+      color: darken($error-color, 20%);
+      padding: 1rem;
+      border-radius: 4px;
+      margin: 1rem 0;
+      border-left: 4px solid $error-color;
+    }
   }
 
   h1 {
@@ -173,6 +182,34 @@ $border-color: #e0e0e0;
   }
 }
 
+// Loading Spinner
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 300px;
+
+  .spinner {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border-left-color: $primary-color;
+    animation: spin 1s linear infinite;
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+
 // Gallery Filters
 .gallery-header {
   display: flex;
@@ -181,14 +218,11 @@ $border-color: #e0e0e0;
   flex-wrap: wrap;
   margin-bottom: 2rem;
 }
-
 // Main Content
   .container {
     max-width: 1200px;
     margin: 0 auto;
   }
-
-
 // Grid Container
 .grid-container {
   display: grid;
@@ -282,33 +316,50 @@ $border-color: #e0e0e0;
     border-radius: 12px 12px 0 0;
 
     img {
-      aspect-ratio: 16/9;
+      width: auto;
+      height: auto;
       object-fit: cover;
       transition: transform 0.4s ease;
     }
   }
 }
 
+.tooltip-button {
+  position: relative;
+  display: inline-block;
 
+  button {
+    z-index: 1;
+  }
+
+  &::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 125%; /* above the button */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: #fff;
+    padding: 4px 8px;
+    font-size: 0.75rem;
+    border-radius: 4px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+
+  &:hover::after {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-4px);
+  }
+}
 
 @media (max-width: 450px) {
   .gallery-header {
     flex-direction: column;
     align-items: stretch;
-
-    .search-section {
-      width: 100%;
-      display: flex;
-      justify-content: center;
-
-      .add-button {
-        width: 100%;
-        padding: 0.5rem;
-        font-size: 0.9rem;
-      }
-    }
   }
-
   .grid-container {
     grid-template-columns: 1fr;
     gap: 20px;
@@ -343,4 +394,129 @@ $border-color: #e0e0e0;
       }
     }
   }
+
+  .image-button-row {
+    flex-direction: column;
+    gap: 0.8rem;
+
+    .btn {
+      width: 100%;
+      justify-content: center;
+      font-size: 0.85rem;
+    }
+  }
+
+  .tooltip-button::after {
+    font-size: 0.65rem;
+    padding: 3px 6px;
+  }
+}
+// Add these styles to your SCSS file
+.pagination-container {
+  margin-top: 3rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 0 1rem;
+
+  .pagination-controls {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    background: #fff;
+    padding: 0.8rem 1.8rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e2e8f0;
+  }
+
+  .pagination-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1.2rem;
+    border: 1px solid #e2e8f0;
+    background: #fff;
+    color: #4a5568;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 0.95rem;
+
+    &:hover:not(:disabled) {
+      background: #f8fafc;
+      border-color: #cbd5e0;
+      transform: translateY(-1px);
+    }
+
+    &:active:not(:disabled) {
+      transform: translateY(0);
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    i {
+      font-size: 0.8rem;
+      transition: transform 0.2s ease;
+    }
+
+    &.prev:hover:not(:disabled) i {
+      transform: translateX(-2px);
+    }
+
+    &.next:hover:not(:disabled) i {
+      transform: translateX(2px);
+    }
+  }
+
+  .page-info {
+    color: #4a5568;
+    font-size: 0.95rem;
+    min-width: 120px;
+    text-align: center;
+    font-weight: 500;
+    .mobile-page {
+      display: none;
+    }
+  
+    .desktop-page {
+      display: inline;
+    }
+  
+    @media (max-width: 576px) {
+      .mobile-page {
+        display: inline;
+      }
+  
+      .desktop-page {
+        display: none;
+      }
+    }
+  }
+
+  // Responsive adjustments
+  @media (max-width: 576px) {
+    .pagination-text {
+      display: none;
+    }
+    .pagination-button {
+      padding: 0.5rem;
+      font-size: 1.1rem;
+  
+      i {
+        font-size: 1.2rem;
+        margin: 0;
+      }
+    }
+  
+    .pagination-controls {
+      gap: 1rem;
+      padding: 0.5rem 1rem;
+    }
+  }
+  
 }

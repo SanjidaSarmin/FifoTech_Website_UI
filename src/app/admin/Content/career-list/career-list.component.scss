@@ -50,7 +50,7 @@
 }
 
 .add-button {
-    background-color: #046dc4;
+    background-color: #035ea8;
     color: #fff;
     border: none;
     padding: 0.75rem 1.75rem;
@@ -80,7 +80,7 @@
     }
     
     &:hover {
-        background-color: #035ea8;
+        background-color: #003c81;
         transform: translateY(-2px);
         box-shadow: 0 4px 12px rgba(4, 109, 196, 0.3);
     }
@@ -268,8 +268,39 @@ to {
     color: #444;
   }
   
+  input[type="date"] {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.9rem;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    background-color: #fff;
+    color: #1f2937;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    height: 2.5rem;
+    
+    &:focus {
+      outline: none;
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    }
+    
+    &::-webkit-calendar-picker-indicator {
+      cursor: pointer;
+      opacity: 0.7;
+      transition: opacity 0.2s ease;
+      
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+
   input[type="text"],
-  input[type="checkbox"],
+  input[type="email"],
+  input[type="password"],
+  input[type="number"],
+  select,
   textarea {
     padding: 10px 12px;
     border: 1.5px solid #ccc;

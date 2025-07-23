@@ -12,7 +12,6 @@
 </header>
 
 <div class="container">
-
   <div class="gallery-header">
     <div class="search-section">
       <button class="add-button" (click)="openAddModal()">
@@ -141,6 +140,9 @@
     </div>
   </div>
 
+
+  
+
   <!-- gallery Grid -->
   <div class="container">
     <div class="grid-container">
@@ -154,7 +156,12 @@
 
         <div class="item-content">
           <h3 class="item-title">{{ item.title }}</h3>
-          <p class="item-description">{{ item.subtitle }}</p>
+
+          <div class="item-date" *ngIf="item.postDate">
+            <i class="far fa-calendar-alt"></i>
+            <span>{{ item.postDate | date: 'mediumDate' }}</span>
+          </div>
+          <p class="item-description">{{ item.subtitle | slice: 0:60 }}{{ item.subtitle.length > 60 ? '...' : '' }}</p>
         </div>
 
         <div class="hover-content">

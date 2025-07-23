@@ -6,6 +6,7 @@ $light-gray: #f5f7fa;
 $white: #ffffff;
 $transition: all 0.3s ease;
 $border-color: #e0e0e0;
+$error-color: #e74c3c;
 
 // Grid item hover effect
 .grid-item {
@@ -41,6 +42,7 @@ $border-color: #e0e0e0;
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -98,6 +100,15 @@ $border-color: #e0e0e0;
       opacity: 0;
       animation-delay: 0.6s;
     }
+
+    .error-message {
+      background-color: lighten($error-color, 35%);
+      color: darken($error-color, 20%);
+      padding: 1rem;
+      border-radius: 4px;
+      margin: 1rem 0;
+      border-left: 4px solid $error-color;
+    }
   }
 
   h1 {
@@ -114,7 +125,8 @@ $border-color: #e0e0e0;
     &::after {
       content: '';
       position: absolute;
-      bottom: -20px; /* Increased from -12px to -20px for more space */
+      bottom: -20px;
+      /* Increased from -12px to -20px for more space */
       left: 50%;
       transform: translateX(-50%);
       width: 100px;
@@ -173,9 +185,37 @@ $border-color: #e0e0e0;
   }
 }
 
+// Loading Spinner
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 300px;
+
+  .spinner {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border-left-color: $primary-color;
+    animation: spin 1s linear infinite;
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 /* Common Modal Content */
 .modal {
-  display: none; /* hidden by default */
+  display: none;
+  /* hidden by default */
   position: fixed;
   top: 0;
   left: 0;
@@ -206,16 +246,17 @@ $border-color: #e0e0e0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0,0,0,0.5); /* semi-transparent black */
+  background-color: rgba(0, 0, 0, 0.5);
+  /* semi-transparent black */
   z-index: 1000;
 }
 
 
 .modal .modal-content {
-  position: relative;     
-  max-height: 80vh;    
-  overflow-y: auto;   
-  margin: 2rem auto;   
+  position: relative;
+  max-height: 80vh;
+  overflow-y: auto;
+  margin: 2rem auto;
   background: white;
   border-radius: 8px;
   padding: 1.5rem;
@@ -232,6 +273,7 @@ $border-color: #e0e0e0;
   margin-bottom: 24px;
   text-align: center;
 }
+
 .modal-body {
   margin-bottom: 24px;
   text-align: center;
@@ -289,7 +331,7 @@ $border-color: #e0e0e0;
   gap: 22px;
 }
 
-.modal form > div {
+.modal form>div {
   display: flex;
   flex-direction: column;
 }
@@ -442,7 +484,8 @@ input[type="date"] {
 }
 
 .modal .modal-footer .submit-button:hover:not(:disabled) {
-  background: #3a78c2; /* manually darkened blue */
+  background: #3a78c2;
+  /* manually darkened blue */
   transform: translateY(-1px);
 }
 
@@ -469,7 +512,7 @@ input[type="date"] {
 
   .btn-remove {
     background-color: #ffffff;
-    color:  #e53935;
+    color: #e53935;
     border: 2px solid #e53935;
 
     &:hover {
@@ -566,10 +609,10 @@ input[type="date"] {
 
 
 // Main Content
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
-  }
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
 
 
 // Grid Container
@@ -596,7 +639,7 @@ input[type="date"] {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
-  height: 350px; 
+  height: 350px;
   display: flex;
   flex-direction: column;
 
@@ -618,7 +661,7 @@ input[type="date"] {
     flex-direction: column;
     position: relative;
     transition: all 0.6s ease;
-    
+
     .item-title {
       font-size: 1.25rem;
       font-weight: 600;
@@ -626,6 +669,7 @@ input[type="date"] {
       margin-top: 0.75rem;
       color: $text-color;
     }
+
 
     .item-description {
       color: #6b7280;
@@ -636,8 +680,8 @@ input[type="date"] {
 
     .read-more {
       margin-top: auto;
-      margin-bottom: 10px;  
-      align-self: center; 
+      margin-bottom: 10px;
+      align-self: center;
       padding: 0.4rem 1.2rem;
       font-size: 0.85rem;
       min-width: 130px;
@@ -650,12 +694,25 @@ input[type="date"] {
       border: 2px solid $primary-color;
       border-radius: 50px;
       transition: all 0.3s ease;
-  
+
       &:hover {
         background: $primary-color;
         color: white;
         transform: translateY(-2px);
         box-shadow: 0 4px 15px rgba(35, 75, 136, 0.4);
+      }
+    }
+
+    .item-date {
+      display: flex;
+      align-items: center;
+      margin-bottom: 5px;
+      font-size: 0.95rem;
+      color: #0b5775;
+
+      i {
+        margin-right: 8px;
+        font-size: 1.1rem;
       }
     }
   }
@@ -671,6 +728,8 @@ input[type="date"] {
     }
   }
 }
+
+
 .notification {
   position: fixed;
   top: 20px;
@@ -779,7 +838,8 @@ input[type="date"] {
   &::after {
     content: attr(data-tooltip);
     position: absolute;
-    bottom: 125%; /* above the button */
+    bottom: 125%;
+    /* above the button */
     left: 50%;
     transform: translateX(-50%);
     background-color: #333;
@@ -853,28 +913,31 @@ input[type="date"] {
   }
 
   .hover-content {
-    flex-direction: row; /* Change from column to row */
+    flex-direction: row;
+    /* Change from column to row */
     gap: 12px;
     padding: 20px;
-  
+
     .action-buttons {
-      flex-direction: row; /* Also row here */
+      flex-direction: row;
+      /* Also row here */
       gap: 8px;
       display: flex;
       justify-content: center;
       width: 100%;
     }
-  
+
     .view-button,
     .edit-button,
     .delete-button {
-      width: auto; /* Let buttons take their natural width */
+      width: auto;
+      /* Let buttons take their natural width */
       justify-content: center;
       font-size: 0.8rem;
       padding: 6px 12px;
     }
   }
-  
+
 
   .modal .modal-content {
     width: 95%;
@@ -904,4 +967,114 @@ input[type="date"] {
     font-size: 0.65rem;
     padding: 3px 6px;
   }
+}
+
+// Add these styles to your SCSS file
+.pagination-container {
+  margin-top: 3rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 0 1rem;
+
+  .pagination-controls {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    background: #fff;
+    padding: 0.8rem 1.8rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e2e8f0;
+  }
+
+  .pagination-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1.2rem;
+    border: 1px solid #e2e8f0;
+    background: #fff;
+    color: #4a5568;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 0.95rem;
+
+    &:hover:not(:disabled) {
+      background: #f8fafc;
+      border-color: #cbd5e0;
+      transform: translateY(-1px);
+    }
+
+    &:active:not(:disabled) {
+      transform: translateY(0);
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    i {
+      font-size: 0.8rem;
+      transition: transform 0.2s ease;
+    }
+
+    &.prev:hover:not(:disabled) i {
+      transform: translateX(-2px);
+    }
+
+    &.next:hover:not(:disabled) i {
+      transform: translateX(2px);
+    }
+  }
+
+  .page-info {
+    color: #4a5568;
+    font-size: 0.95rem;
+    min-width: 120px;
+    text-align: center;
+    font-weight: 500;
+    .mobile-page {
+      display: none;
+    }
+  
+    .desktop-page {
+      display: inline;
+    }
+  
+    @media (max-width: 576px) {
+      .mobile-page {
+        display: inline;
+      }
+  
+      .desktop-page {
+        display: none;
+      }
+    }
+  }
+
+  // Responsive adjustments
+  @media (max-width: 576px) {
+    .pagination-text {
+      display: none;
+    }
+    .pagination-button {
+      padding: 0.5rem;
+      font-size: 1.1rem;
+  
+      i {
+        font-size: 1.2rem;
+        margin: 0;
+      }
+    }
+  
+    .pagination-controls {
+      gap: 1rem;
+      padding: 0.5rem 1rem;
+    }
+  }
+  
 }

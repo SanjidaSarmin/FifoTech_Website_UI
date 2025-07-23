@@ -23,6 +23,7 @@ import { GalleryComponent } from './Components/gallery/gallery.component';
 import { GalleryDetailsComponent } from './Components/gallery-details/gallery-details.component';
 import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
 import { BusinessServicesDetailsComponent } from './Components/business-services-details/business-services-details.component';
+import { JobApplicationComponent } from './Components/job-application/job-application.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { BusinessServicesDetailsComponent } from './Components/business-services
     NewsDetailComponent,
     GalleryComponent,
     GalleryDetailsComponent,
-    BusinessServicesDetailsComponent
+    BusinessServicesDetailsComponent,
+    JobApplicationComponent
   ],
   imports: [
     BrowserModule,

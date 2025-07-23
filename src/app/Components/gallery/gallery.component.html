@@ -12,27 +12,54 @@
 </header>
 
 <div class="container">
+
+  <!-- Loading Spinner -->
+  <div *ngIf="isLoading" class="loading-spinner">
+    <div class="spinner"></div>
+  </div>
+
+  <!-- Error Message -->
+  <div *ngIf="errorMessage && !isLoading" class="error-message">
+    {{ errorMessage }}
+  </div>
+
   <!-- gallery Grid -->
-    <div class="container">
-      <div class="grid-container">
-        <div class="grid-item" *ngFor="let item of galleryItems; let i = index" [class]="'item-' + (i + 1)">
+  <div class="container">
+    <div class="grid-container">
+      <div class="grid-item" *ngFor="let item of galleryItems; let i = index" [class]="'item-' + (i + 1)">
 
-          <div class="item-image">
-            <img *ngIf="item.thumbnailImageBase64" [src]="'data:image/jpeg;base64,' + item.thumbnailImageBase64"
-              [alt]="item.title" class="grid-image" (click)="openLightbox(item)" />
-            <div class="overlay"></div>
-          </div>
-
-          <div class="item-content">
-            <h3 class="item-title">{{ item.title }}</h3>
-            <p class="item-description">{{ item.subtitle }}</p>
-            <a class="read-more" (click)="navigateToGallary(item.id); $event.stopPropagation()">
-              View Details
-            </a>
-          </div>
-
+        <div class="item-image">
+          <img *ngIf="item.thumbnailImageBase64" [src]="'data:image/jpeg;base64,' + item.thumbnailImageBase64"
+            [alt]="item.title" class="grid-image" (click)="openLightbox(item)" />
+          <div class="overlay"></div>
         </div>
+
+        <div class="item-content">
+          <h3 class="item-title">{{ item.title }}</h3>
+          <p class="item-description">{{ item.subtitle | slice: 0:60 }}{{ item.subtitle.length > 60 ? '...' : '' }}</p>
+          <a class="read-more" (click)="navigateToGallary(item.id); $event.stopPropagation()">
+            View Details
+          </a>
+        </div>
+
       </div>
-
-
     </div>
+
+    <!-- Pagination Controls -->
+<div class="pagination-controls" *ngIf="totalPages > 1 && !isLoading">
+  <button (click)="prevPage()" [disabled]="currentPage === 0">Previous</button>
+
+  <ng-container *ngFor="let page of [].constructor(totalPages); let i = index">
+    <button 
+      [class.active]="i === currentPage"
+      (click)="goToPage(i)">
+      {{ i + 1 }}
+    </button>
+  </ng-container>
+
+  <button (click)="nextPage()" [disabled]="currentPage === totalPages - 1">Next</button>
+</div>
+
+
+
+  </div>

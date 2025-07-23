@@ -21,32 +21,35 @@ export class GalleryComponent implements OnInit {
     private galleryService: GalleryService) { }
 
   ngOnInit(): void {
-    this.getAllGalleryItems();
+    this.getAllGalleryItems(0, 'postDate', 'desc');
   }
 
   galleryItems: any[] = [];
   totalPages: number = 0;
   currentPage: number = 0;
-  pageSize: number = 10;
-  isLoading: boolean = false;
+  pageSize: number = 3;
 
+
+  isLoading = true;
   errorMessage = '';
   
-  getAllGalleryItems(page: number = 0): void {
+  getAllGalleryItems(page: number = 0, sortBy: string = 'postDate', direction: string = 'desc'): void {
     this.isLoading = true;
-    this.galleryService.getGalleryItems(page, this.pageSize).subscribe({
-      next: (response) => {
+    this.galleryService.getGalleryItems(page, this.pageSize, sortBy, direction).subscribe({
+      next: (response: any) => {
         this.galleryItems = response.content || [];
         this.totalPages = response.totalPages;
-        this.currentPage = response.number;  // IMPORTANT: use response.number not page param
+        this.currentPage = response.number;
         this.isLoading = false;
       },
       error: (error) => {
         console.error('Failed to fetch gallery items:', error);
         this.isLoading = false;
+        this.errorMessage = 'Failed to fetch gallery items. Please try again later.';
       }
     });
   }
+  
   
   currentItem: GalleryItem | null = null;
   lightboxActive = false;

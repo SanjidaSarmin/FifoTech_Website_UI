@@ -24,6 +24,7 @@ import { MessageListComponent } from './Content/message-list/message-list.compon
 import { GallaryListComponent } from './Content/gallary-list/gallary-list.component';
 import { GallaryDetailsComponent } from './Content/gallary-details/gallary-details.component';
 import { CareerListComponent } from './Content/career-list/career-list.component';
+import { ApplicantListComponent } from './Content/applicant-list/applicant-list.component';
 
 // Shared Components
 // TODO: Add any shared components here
@@ -41,6 +42,7 @@ import { CareerListComponent } from './Content/career-list/career-list.component
     GallaryListComponent,
     GallaryDetailsComponent,
     CareerListComponent,
+    ApplicantListComponent,
   ],
   imports: [
     CommonModule,

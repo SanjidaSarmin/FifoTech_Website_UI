@@ -1,0 +1,50 @@
+<div class="applicant-table-container">
+    <div class="table-header">
+        <h2 class="table-title">Job Applicants</h2>
+    </div>
+    <table class="custom-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Full Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Gender</th>
+            <th>Location</th>
+            <th>Education</th>
+            <th>Status</th>
+            <th>Experience</th>
+            <th>Position</th>
+            <th>Resume</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let applicant of applicants; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ applicant.fullName }}</td>
+            <td>{{ applicant.email }}</td>
+            <td>{{ applicant.phone }}</td>
+            <td>{{ applicant.gender }}</td>
+            <td>{{ applicant.currentLocation }}</td>
+            <td>{{ applicant.educationQualification }}</td>
+            <td>{{ applicant.employmentStatus }}</td>
+            <td>{{ applicant.workExperience }}</td>
+            <td>{{ applicant.jobTitle }}</td>
+            <td>
+              <button class="btn-download" (click)="downloadResume(applicant.resumePath)">
+                <i class="fas fa-download"></i> Download
+              </button>
+            </td>
+            <td>
+              <div class="action-buttons">
+                <button class="delete-button" (click)="$event.stopPropagation(); deleteApplicant(applicant.id)">
+                  <i class="fas fa-trash-alt"></i> Delete
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+  </div>
+  

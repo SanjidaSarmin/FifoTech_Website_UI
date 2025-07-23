@@ -1,0 +1,440 @@
+// Modern Color Palette
+$primary-color: #2563eb;
+$primary-hover: #1d4ed8;
+$primary-light: #dbeafe;
+$text-color: #1f2937;
+$text-light: #6b7280;
+$light-bg: #f9fafb;
+$border-color: #e5e7eb;
+$border-radius: 0.5rem;
+$error-color: #dc2626;
+$success-color: #059669;
+$shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+$shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+$transition: all 0.2s ease-in-out;
+
+.job-application-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  background: white;
+  padding: 2.5rem 3rem;
+  border-radius: 1rem;
+  box-shadow: $shadow-md;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+  
+  @media (max-width: 640px) {
+    padding: 1.5rem;
+    margin: 0;
+    border-radius: 0;
+  }
+}
+
+h2 {
+  color: $text-color;
+  margin-bottom: 2rem;
+  text-align: center;
+  font-size: 1.875rem;
+  font-weight: 700;
+  line-height: 1.2;
+  position: relative;
+  padding-bottom: 1rem;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, $primary-color, lighten($primary-color, 15%));
+    border-radius: 2px;
+  }
+}
+
+// Form layout
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 2.2rem;
+  
+  @media (max-width: 768px) {
+    gap: 1.8rem;
+  }
+}
+
+.form-group {
+  margin-bottom: 0.5rem;
+  position: relative;
+  
+  label {
+    display: block;
+    margin-bottom: 0.9rem;
+    font-weight: 500;
+    color: $text-color;
+    font-size: 0.95rem;
+    transition: $transition;
+    
+    .required {
+      color: $error-color;
+      margin-left: 2px;
+    }
+  }
+}
+
+// Form controls
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="number"],
+select{
+    width: 100%;
+    padding: 0.65rem 1.25rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+    background-color: #fff;
+    margin: 0.4rem 0 0.8rem;
+    height: 45px;
+  
+  &:focus {
+    outline: none;
+    border-color: $primary-color;
+    box-shadow: 0 0 0 3px rgba($primary-color, 0.1);
+    border-width: 1.5px;
+  }
+  
+  &:disabled {
+    background-color: #f3f4f6;
+    color: #9ca3af;
+    cursor: not-allowed;
+  }
+  
+  &.ng-invalid.ng-touched {
+    border-color: $error-color;
+    
+    &:focus {
+      box-shadow: 0 0 0 3px rgba($error-color, 0.1);
+    }
+  }
+}
+
+
+select {
+ background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 1rem;
+  padding-right: 2.5rem;
+  cursor: pointer;
+
+}
+
+// File upload styles
+.file-upload {
+    position: relative;
+    margin-top: 5px;
+  }
+  
+  input[type="file"] {
+    display: none;
+  }
+  
+  .file-upload-label {
+    display: block;
+    border: 2px dashed #ccc;
+    padding: 18px 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+    background-color: #fafafa;
+    color: #333;
+  }
+  
+  .file-upload-label:hover {
+    border-color: #007bff;
+  }
+  
+  .upload-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .upload-icon {
+    font-size: 32px;
+    color: #007bff;
+    font-weight: bold;
+  }
+  
+  .file-hint {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.4;
+  }
+  
+  .file-hint small {
+    display: block;
+    font-size: 12px;
+    color: #888;
+  }
+  
+  .file-selected {
+    font-size: 14px;
+    color: #222;
+    font-weight: 500;
+  }
+  
+  .browse-btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 6px 12px;
+    font-size: 14px;
+    background-color: #007bff;
+    color: white;
+    border-radius: 4px;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+  }
+  
+  .browse-btn:hover {
+    background-color: #0056b3;
+  }
+  
+  .error-message {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+  }
+  
+ 
+  
+  .loading-spinner {
+    width: 18px;
+    height: 18px;
+    border: 3px solid #fff;
+    border-top: 3px solid #007bff;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+  
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+
+// Form sections
+.section-title {
+  color: $text-color;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 2rem 0 1.25rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid $border-color;
+  grid-column: 1 / -1;
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 80px;
+    height: 2px;
+    background: linear-gradient(90deg, $primary-color, lighten($primary-color, 15%));
+    border-radius: 1px;
+  }
+  
+  &:first-child {
+    margin-top: 0;
+  }
+}
+
+// Required field indicator
+.required {
+  color: $error-color;
+  margin-left: 2px;
+  font-weight: 700;
+}
+
+// Buttons
+.submit-btn {
+  background: linear-gradient(135deg, $primary-color, darken($primary-color, 10%));
+  color: white;
+  border: none;
+  padding: 12px 10px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+  margin: 2rem 0 1rem;
+  letter-spacing: 0.5px;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  }
+}
+
+// Form validation and error states
+.ng-invalid.ng-touched:not(form) {
+  border-color: $error-color !important;
+  
+  & + .error-message {
+    display: block;
+  }
+}
+
+.error-message {
+  display: none;
+  color: $error-color;
+  font-size: 0.8125rem;
+  margin-top: 0.35rem;
+  line-height: 1.4;
+  
+  &::before {
+    content: '! ';
+    font-weight: bold;
+  }
+}
+
+// Error field styling
+.has-error {
+  input, select, textarea {
+    border-color: $error-color !important;
+    
+    &:focus {
+      box-shadow: 0 0 0 3px rgba($error-color, 0.1);
+    }
+  }
+  
+  .error-message {
+    display: block;
+  }
+}
+
+.custom-file-box {
+    margin-top: 10px;
+    padding: 12px 16px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    background-color: #f9fafb;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    display: flex;
+    align-items: center;
+    max-width: 100%;
+  }
+  
+  .file-info {
+    display: flex;
+    align-items: center;
+  }
+  
+  .file-details .file-name {
+    font-weight: 600;
+    color: #0b8d50; /* Tailwind Gray-900 */
+  }
+  
+  .file-details .file-size {
+    font-size: 12px;
+    color: #2f343d; /* Tailwind Gray-500 */
+  }
+  
+
+// Success and status messages
+.success-message,
+.error-message {
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin: 1.5rem 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  
+  .icon {
+    margin-right: 0.75rem;
+    font-size: 1.25rem;
+    margin-top: 0.15rem;
+  }
+  
+  h4 {
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+    color: $success-color;
+  }
+  
+  p {
+    font-size: 0.9375rem;
+    margin: 0;
+    color: $text-color;
+    opacity: 0.9;
+  }
+}
+
+// Error message container
+.error-message-container {
+  grid-column: 1 / -1;
+  background-color: #fef2f2;
+  color: $error-color;
+  padding: 1rem 1.25rem;
+  border-radius: $border-radius;
+  margin: 1rem 0 0;
+  display: flex;
+  align-items: flex-start;
+  border: 1px solid #fecaca;
+  
+  .icon {
+    margin-right: 0.75rem;
+    font-size: 1.25rem;
+    margin-top: 0.15rem;
+  }
+  
+  p {
+    margin: 0;
+    font-size: 0.9375rem;
+    line-height: 1.5;
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 640px) {
+  .job-application-container {
+    padding: 1.5rem;
+  }
+  
+  form {
+    gap: 1.25rem;
+  }
+  
+  .section-title {
+    font-size: 1.125rem;
+    margin: 1.75rem 0 1.25rem;
+  }
+  
+  button[type="submit"] {
+    padding: 0.875rem 1.5rem;
+    font-size: 1rem;
+  }
+}
+
+// Animation for form elements
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.form-group {
+  animation: fadeIn 0.3s ease-out forwards;
+  opacity: 0;
+  
+  @for $i from 1 through 15 {
+    &:nth-child(#{$i}) {
+      animation-delay: #{$i * 0.05}s;
+    }
+  }
+}

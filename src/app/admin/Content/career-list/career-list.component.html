@@ -18,7 +18,8 @@
 
             <div>
                 <label for="type">Type</label>
-                <input type="text" id="type" name="type" [(ngModel)]="newCareer.type" required />
+                <input type="text" id="type" name="type" [(ngModel)]="newCareer.type" 
+                placeholder="Part Time/Full time/Intern" required />
             </div>
 
             <div>
@@ -36,6 +37,21 @@
                 <label for="requirements">Requirements (comma separated)</label>
                 <input type="text" id="requirements" name="requirement" [(ngModel)]="newCareer.requirement"
                     placeholder="e.g. Java, Spring Boot, SQL" required />
+            </div>
+
+            <div>
+                <label for="salary">Salary</label>
+                <input type="text" id="salary" name="salary" [(ngModel)]="newCareer.salary" required>
+            </div>
+
+            <div>
+                <label for="experience">Experience Required</label>
+                <input type="text" id="experience" name="experience" [(ngModel)]="newCareer.experience" required>
+            </div>
+
+            <div>
+                <label for="deadline">Application Deadline</label>
+                <input type="date" id="deadline" name="deadline" [(ngModel)]="newCareer.deadline" required>
             </div>
 
             <div>
@@ -65,7 +81,8 @@
 
             <div>
                 <label for="editType">Type</label>
-                <input type="text" id="editType" name="type" [(ngModel)]="editingCareer.type" required />
+                <input type="text" id="editType" name="type" [(ngModel)]="editingCareer.type"
+                placeholder="Part Time/Full time/Intern" required />
             </div>
 
             <div>
@@ -83,6 +100,21 @@
                 <label for="editRequirements">Requirements (comma separated)</label>
                 <input type="text" id="editRequirements" name="requirement" [(ngModel)]="editingCareer.requirement"
                     placeholder="e.g. Java, Spring Boot, SQL" required />
+            </div>
+
+            <div>
+                <label for="editSalary">Salary</label>
+                <input type="text" id="editSalary" name="salary" [(ngModel)]="editingCareer.salary" required>
+            </div>
+
+            <div>
+                <label for="editExperience">Experience Required</label>
+                <input type="text" id="editExperience" name="experience" [(ngModel)]="editingCareer.experience" required>
+            </div>
+
+            <div>
+                <label for="editDeadline">Application Deadline</label>
+                <input type="date" id="editDeadline" name="deadline" [(ngModel)]="editingCareer.deadline" required>
             </div>
 
             <div>
@@ -111,6 +143,9 @@
                 <th>Location</th>
                 <th>Description</th>
                 <th>Requirements</th>
+                <th>Salary</th>
+                <th>Experience</th>
+                <th>Deadline</th>
                 <th>Open</th>
                 <th>Action</th>
             </tr>
@@ -126,6 +161,9 @@
                         <li *ngFor="let req of career.requirement">{{ req }}</li>
                     </ul>
                 </td>
+                <td>{{ career.salary }}</td>
+                <td>{{ career.experience }}</td>
+                <td>{{ career.deadline | date:'mediumDate' }}</td>
                 <td>{{ career.open ? 'Yes' : 'No' }}</td>
                 <td>
                     <div class="action-buttons">

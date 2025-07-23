@@ -55,6 +55,30 @@
           </div>
         </div>
 
+        <!-- Position Details Grid -->
+        <div class="position-details-grid" *ngIf="position.isOpen">
+          <div class="detail-item" *ngIf="position.salary">
+            <div class="detail-content">
+              <span class="detail-label">Salary</span>
+              <span class="detail-value">{{ position.salary }}</span>
+            </div>
+          </div>
+          
+          <div class="detail-item" *ngIf="position.experience">
+            <div class="detail-content">
+              <span class="detail-label">Experience</span>
+              <span class="detail-value">{{ position.experience }}</span>
+            </div>
+          </div>
+          
+          <div class="detail-item" *ngIf="position.deadline">
+            <div class="detail-content">
+              <span class="detail-label">Application Deadline</span>
+              <span class="detail-value">{{ position.deadline | date:'mediumDate' }}</span>
+            </div>
+          </div>
+        </div>
+
         <div class="position-details" *ngIf="position.isOpen">
           <div class="detail-content">
             <div class="description-section">
@@ -71,9 +95,9 @@
             </div>
 
             <div class="position-actions">
-              <button class="btn btn-primary" (click)="$event.stopPropagation(); applyNow(position)">
-                <i class="fas fa-paper-plane"></i>Apply Now
-              </button>
+              <button class="btn btn-primary" (click)="applyNow(position)">
+                <i class="fas fa-paper-plane"></i> Apply Now
+              </button>                           
             </div>
           </div>
         </div>

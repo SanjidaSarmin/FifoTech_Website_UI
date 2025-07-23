@@ -26,11 +26,6 @@ export class DashboardComponent implements OnInit {
       path: '/admin/news-list',
       iconImage: 'assets/news.png',
       description: 'Manage news articles'
-    },{
-      title: 'Career',
-      path: '/admin/career-list',
-      iconImage: 'assets/carrer.png',
-      description: 'Manage career post'
     },
     {
       title: 'Gallery',
@@ -45,16 +40,22 @@ export class DashboardComponent implements OnInit {
       description: 'Manage office info'
     },
     {
+      title: 'Career',
+      path: '/admin/career-list',
+      iconImage: 'assets/carrer.png',
+      description: 'Manage career post'
+    },
+    {
+      title: 'Applicant List',
+      path: '/admin/applicant-list',
+      iconImage: 'assets/person.png',
+      description: 'Manage user accounts'
+    },
+    {
       title: 'Message',
       path: '/admin/messageList',
       iconImage: 'assets/msg.png',
       description: 'View client messages'
-    },
-    {
-      title: 'Users',
-      path: '/admin/users',
-      iconImage: 'assets/person.png',
-      description: 'Manage user accounts'
     },
     {
       title: 'Settings',

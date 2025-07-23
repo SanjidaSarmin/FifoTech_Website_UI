@@ -31,4 +31,30 @@ export class CareerService {
   deleteCareer(id: number){
     return this.http.delete(`${this.API_URL}/${id}`);
   }
+
+  // Job application
+  
+  private applicationUrl = `${environment.apiUrl}/api/applications`;
+
+  submitApplication(formData: FormData) {
+    return this.http.post(`${this.applicationUrl}/apply`, formData);
+  }
+
+  getAllApplications() {
+    return this.http.get(this.applicationUrl);
+  }
+
+  getApplicationById(id: number){
+    return this.http.get(`${this.applicationUrl}/${id}`);
+  }
+
+  deleteApplication(id: number){
+    return this.http.delete(`${this.applicationUrl}/${id}`);
+  }
+
+  downloadResume(fileName: string): Observable<Blob> {
+    return this.http.get(`${this.applicationUrl}/resume/${fileName}`, {
+      responseType: 'blob'
+    });
+  }
 }

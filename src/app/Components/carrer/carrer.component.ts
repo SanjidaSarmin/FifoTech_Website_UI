@@ -1,6 +1,7 @@
 import { Component, OnInit, HostListener, AfterViewInit, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { CareerService } from 'src/app/services/career/career.service';
+import { Router } from '@angular/router';
 
 declare var $: any; // For jQuery
 
@@ -41,7 +42,9 @@ declare var $: any; // For jQuery
 
 export class CarrerComponent implements OnInit{
   careers: any = [];
-  constructor(private careerService: CareerService) {}
+  constructor(private careerService: CareerService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.careerService.getAllCareers().subscribe((data: any) => {
@@ -52,8 +55,9 @@ export class CarrerComponent implements OnInit{
     });
   }
   
-  
-
+  applyNow(position: any): void {
+    this.router.navigate(['/jobapplication', position.id]);
+  }
 
   benefits: any[] = [
     {    
@@ -79,13 +83,6 @@ export class CarrerComponent implements OnInit{
   togglePosition(position: any): void {
     position.isOpen = !position.isOpen;
   }
-
-  applyNow(position: any): void {
-    console.log('Applying for position:', position.title);
-    alert(`Thank you for your interest in the ${position.title} position! Our team will review your application.`);
-  }
-
-
   
   shareJob(position: any, platform: string): void {
     const jobUrl = `${window.location.origin}/career#position-${position.id}`;

@@ -21,12 +21,22 @@ export class GalleryService {
     return this.http.put(`${this.baseUrl}/updateGallery/${id}`, formData);
   }
 
-  getGalleryItems(page: number = 0, size: number = 9): Observable<any> {
+  // getGalleryItems(page: number = 0, size: number = 9): Observable<any> {
+  //   const params = new HttpParams()
+  //     .set('page', page.toString())
+  //     .set('size', size.toString());
+  //   return this.http.get(`${this.baseUrl}/getAllGallery`, { params });
+  // }  
+
+  getGalleryItems(page: number, size: number, sortBy: string, direction: string){
     const params = new HttpParams()
-      .set('page', page.toString())
-      .set('size', size.toString());
-    return this.http.get(`${this.baseUrl}/getAllGallery`, { params });
-  }  
+      .set('page', page)
+      .set('size', size)
+      .set('sortBy', sortBy)
+      .set('direction', direction);
+
+    return this.http.get(`${this.baseUrl}/getAllGallery`,  { params });
+  }
 
   getGalleryItemById(id: number): Observable<any> {
     return this.http.get(`${this.baseUrl}/getGalleryById/${id}`);
